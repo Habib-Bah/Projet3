@@ -2,15 +2,16 @@ package fr.projet3;
 
 import java.io.*;
 
-public class MisterMind {
+public class RecherchePM {
 
 	
 	String title;
 	private  String Mode;
 	boolean actif = false;
-	
-	public MisterMind() {
-		 this.actif = true;
+
+	public RecherchePM() {
+ 
+		this.actif = true;
 	}
 
 	public  String getMode() {
@@ -26,4 +27,6 @@ public class MisterMind {
 		@SuppressWarnings("unused")
 		ModeDeJeu mdj = new ModeDeJeu(getMode(), new OutputStreamWriter(System.out));
 	}
+	
+	
 }

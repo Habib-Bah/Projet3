@@ -10,24 +10,29 @@ public class Test {
 
 		String mode = JOptionPane
 				.showInputDialog("Tapez 1 pour le jouer à Recherche +/-; \n Tapez 2 pour jouer à MisterMind \n ");
-
+		
 		switch (mode) {
 		case "1":
 			String message = JOptionPane.showInputDialog(
 					"Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
 			if (message.equals("1")) {
-				RechechePM recherche = new RechechePM("Mode challenger : recherche +/-", new OutputStreamWriter(System.out));
-				recherche.setMode("challenger");
-				//recherche.toFind();
+				RecherchePM recherche = new RecherchePM();
+				recherche.setMode("Recherche +/- : challenger");
+				ModeDeJeu modedj = new ModeDeJeu(recherche.getMode(), new OutputStreamWriter(System.out));
+				modedj.setMode("Recherche +/- : challenger");
 				
 			} else if (message.equals("2")) {
-				RechechePM recherche = new RechechePM("Mode défenseur : recherche +/-", new OutputStreamWriter(System.out));
-				recherche.setMode("défenseur");
-				recherche.toFind();
+				RecherchePM recherche = new RecherchePM();
+				recherche.setMode("Recherche +/- : défenseur");
+				ModeDeJeu modedj = new ModeDeJeu("Recherche +/- : défenseur", new OutputStreamWriter(System.out));
+				modedj.setMode("Recherche +/- : défenseur");
+				modedj.toFind();
 			} else {
-				RechechePM recherche = new RechechePM("Mode duel : recherche +/-", new OutputStreamWriter(System.out));
-				recherche.setMode("duel");
-				recherche.toFind();
+				RecherchePM recherche = new RecherchePM();
+				recherche.setMode("Recherche +/- : duel");
+				ModeDeJeu modedj = new ModeDeJeu("Recherche +/- : duel", new OutputStreamWriter(System.out));
+				modedj.setMode("Recherche +/- : duel");
+				//recherche.toFind();
 			}
 			break;
 		
@@ -35,20 +40,30 @@ public class Test {
 			String mes = JOptionPane.showInputDialog(
 					"Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
 			if (mes.equals("1")) {
-				MisterMind mastermind = new MisterMind("Mode challenger :  MisterMind", new OutputStreamWriter(System.out));
-				mastermind.setMode("challenger");
-				mastermind.toFind();
+				MisterMind mastermind = new MisterMind();
+				mastermind.setMode("MisterMind : challenger");
+				ModeDeJeu modedj = new ModeDeJeu("MasterMind : challenger", new OutputStreamWriter(System.out));
+				modedj.setMode("MisterMind  : challenger");
+				//mastermind.toFind();
 			} else if (mes.equals("2")) {
-				MisterMind mastermind = new MisterMind("Mode défenseur : MisterMind ", new OutputStreamWriter(System.out));
-				mastermind.setMode("défenseur");
-				mastermind.toFind();
+				MisterMind mastermind = new MisterMind();
+				mastermind.setMode("MisterMind : défenseur");
+				ModeDeJeu modedj = new ModeDeJeu("MasterMind : défenseur", new OutputStreamWriter(System.out));
+				modedj.setMode("MisterMind : défenseur");
+				//mastermind.toFind();
 			} else {
-				MisterMind mastermind = new MisterMind("Mode duel : MisterMind ", new OutputStreamWriter(System.out));
+				MisterMind mastermind = new MisterMind();
 				mastermind.setMode("duel");
-				mastermind.toFind();
+				ModeDeJeu modedj = new ModeDeJeu(mastermind.getMode(), new OutputStreamWriter(System.out));
+				modedj.setMode("MisterMind : duel");
+				modedj.setMode("duel");
+				//mastermind.toFind();
 			}
+			default :
+				break;
 		}
-
 	}
+
+	
 
 }
