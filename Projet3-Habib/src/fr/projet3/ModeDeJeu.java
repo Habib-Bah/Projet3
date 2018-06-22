@@ -36,6 +36,7 @@ public class ModeDeJeu {
 	public static int randomValue;
 	private String mode;
 	String str;
+	String str2;
 
 	RecherchePM recherche = new RecherchePM();
 	MisterMind mastermind = new MisterMind();
@@ -50,6 +51,7 @@ public class ModeDeJeu {
 
 				x = 1000 + random.nextInt(9999 - 1000);
 				str = String.valueOf(x);
+				str2 = String.valueOf(x);
 
 				frame = new JFrame(titre);
 				frame.setLayout(new BorderLayout());
@@ -70,7 +72,8 @@ public class ModeDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						setMode("Challengeur");
-
+						nbressai = 0;
+						chatTextArea.setText("");
 					}
 				});
 
@@ -79,7 +82,8 @@ public class ModeDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						setMode("Défenseur");
-
+						nbressai = 0;
+						chatTextArea.setText("");
 					}
 				});
 
@@ -88,7 +92,8 @@ public class ModeDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						setMode("Duel");
-
+						nbressai = 0;
+						chatTextArea.setText("");
 					}
 				});
 
@@ -107,7 +112,7 @@ public class ModeDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null,
-								"- Pour lancer la partie, vous devez entrer une la combinaison ==== \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
+								"- Pour lancer la partie, vous devez entrer une la combinaison =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -116,6 +121,8 @@ public class ModeDeJeu {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null,
+								"- Pour lancer la partie, vous devez entrer votre la cproposition =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -170,14 +177,23 @@ public class ModeDeJeu {
 								if (nbressai > nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-								} else {
+								}
+
+								else {
+
 									newMessageTextField.setText("");
 									chatTextArea.append("MOI:  " + message + "\n");
 									String str = String.valueOf(x);
 									System.out.println(" " + str);
 									String m = fa.getIndice(str, message);
-									chatTextArea.append("Ordinateur: " + m + "\n");
-									nbressai++;
+									if (fa.fin(m) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, vous avez trouvé la combianaison sécrète");
+									} else {
+										chatTextArea.append("Ordinateur: " + m + "\n");
+										nbressai++;
+									}
+
 								}
 								break;
 							case "Recherche +/- : défenseur":
@@ -185,14 +201,50 @@ public class ModeDeJeu {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 								} else {
-									newMessageTextField.setText("");
-									chatTextArea.append("MOI:  " + message + "\n");
-									str = fa.getNewCombinaison(message, str);
-									chatTextArea.append("Ordinateur: " + str + "\n");
-									nbressai++;
+									if (fa.fin(message) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, vous avez trouvé la combianaison sécrète");
+									} else {
+										newMessageTextField.setText("");
+										chatTextArea.append("MOI:  " + message + "\n");
+										str = fa.getNewCombinaison(message, str);
+										chatTextArea.append("Ordinateur: " + str + "\n");
+										nbressai++;
+									}
 
 								}
+								break;
 							case "Recherche +/- : duel":
+								if (nbressai > nbr) {
+									JOptionPane.showMessageDialog(null,
+											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+								}
+
+								else {
+
+									newMessageTextField.setText("");
+									chatTextArea.append("MOI:  " + message + "   ");
+									String str = String.valueOf(x);
+									str2 = fa.getNewCombinaison(label2.getText(), str2);
+									System.out.println(" " + str);
+									String mm = fa.getIndice(str, label2.getText());
+
+									newMessageTextField.setText("");
+
+									if (fa.fin(mm) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, vous avez trouvé la combianaison sécrète");
+									} else {
+										mm = fa.getIndice(label2.getText(), str2);
+										chatTextArea.append("Ordinateur: " + message + "\n");
+										chatTextArea.append("Ordinateur: " + str + "   ");
+										chatTextArea.append("MOI:  " + mm + "\n");
+
+										str2 = fa.getNewCombinaison(label2.getText(), str2);
+										nbressai++;
+									}
+
+								}
 								break;
 							default:
 								break;
@@ -227,6 +279,7 @@ public class ModeDeJeu {
 
 								}
 							case "MisterMind : duel":
+
 								break;
 							default:
 								break;
@@ -277,7 +330,7 @@ public class ModeDeJeu {
 
 	// Getter et Setter pour le mode de jeu
 	public String getMode() {
-		return mode;
+		return this.mode;
 	}
 
 	public void setMode(String mode) {

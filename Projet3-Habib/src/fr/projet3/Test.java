@@ -32,7 +32,7 @@ public class Test {
 				recherche.setMode("Recherche +/- : duel");
 				ModeDeJeu modedj = new ModeDeJeu("Recherche +/- : duel", new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : duel");
-				//recherche.toFind();
+				//m.toFind();
 			}
 			break;
 		
