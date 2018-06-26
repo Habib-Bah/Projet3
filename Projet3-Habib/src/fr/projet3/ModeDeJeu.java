@@ -37,6 +37,7 @@ public class ModeDeJeu {
 	private String mode;
 	String str;
 	String str2;
+	boolean actifMode;
 
 	RecherchePM recherche = new RecherchePM();
 	MisterMind mastermind = new MisterMind();
@@ -74,6 +75,9 @@ public class ModeDeJeu {
 						setMode("Challengeur");
 						nbressai = 0;
 						chatTextArea.setText("");
+						x = 1000 + random.nextInt(9999 - 1000);
+						str = String.valueOf(x);
+						str2 = String.valueOf(x);
 					}
 				});
 
@@ -84,6 +88,9 @@ public class ModeDeJeu {
 						setMode("Défenseur");
 						nbressai = 0;
 						chatTextArea.setText("");
+						x = 1000 + random.nextInt(9999 - 1000);
+						str = String.valueOf(x);
+						str2 = String.valueOf(x);
 					}
 				});
 
@@ -94,6 +101,10 @@ public class ModeDeJeu {
 						setMode("Duel");
 						nbressai = 0;
 						chatTextArea.setText("");
+						x = 1000 + random.nextInt(9999 - 1000);
+						str = String.valueOf(x);
+						str2 = String.valueOf(x);
+
 					}
 				});
 
@@ -122,7 +133,7 @@ public class ModeDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null,
-								"- Pour lancer la partie, vous devez entrer votre la cproposition =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
+								"- Pour lancer la partie, vous devez entrer votre proposition =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -171,7 +182,7 @@ public class ModeDeJeu {
 							e1.printStackTrace();
 						}
 
-						if (recherche.actif == true) {
+						if (actifMode == false) {
 							switch (getMode()) {
 							case "Recherche +/- : challenger":
 								if (nbressai > nbr) {
@@ -180,16 +191,16 @@ public class ModeDeJeu {
 								}
 
 								else {
-
-									newMessageTextField.setText("");
-									chatTextArea.append("MOI:  " + message + "\n");
-									String str = String.valueOf(x);
-									System.out.println(" " + str);
 									String m = fa.getIndice(str, message);
 									if (fa.fin(m) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianaison sécrète");
 									} else {
+
+										newMessageTextField.setText("");
+										chatTextArea.append("MOI:  " + message + "\n");
+										String str = String.valueOf(x);
+										System.out.println(" " + str);
 										chatTextArea.append("Ordinateur: " + m + "\n");
 										nbressai++;
 									}
@@ -203,7 +214,7 @@ public class ModeDeJeu {
 								} else {
 									if (fa.fin(message) == true) {
 										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez trouvé la combianaison sécrète");
+												"Fin de partie, votre combianaison sécrète a été trouvée");
 									} else {
 										newMessageTextField.setText("");
 										chatTextArea.append("MOI:  " + message + "\n");
@@ -251,9 +262,9 @@ public class ModeDeJeu {
 							}
 						}
 
-						else if (mastermind.actif == true) {
+						else if (actifMode == true) {
 							switch (getMode()) {
-							case "MisterMind : challenger":
+							case "MisterMind  : challenger":
 								if (nbressai > nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -261,9 +272,16 @@ public class ModeDeJeu {
 									newMessageTextField.setText("");
 									chatTextArea.append("MOI:  " + message + "\n");
 									String str = String.valueOf(x);
-									String m = fa.getIndice(str, message);
-									chatTextArea.append("Ordinateur: " + m + "\n");
-									nbressai++;
+									System.out.println(" " + str);
+									String m = fa.getIndiceMister(str, message);
+									if (m.equalsIgnoreCase("4 présents, 4 bien placés")) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, vous avez trouvé la combianison sécrète");
+									} else {
+										chatTextArea.append("Ordinateur: " + m + "\n");
+										nbressai++;
+									}
+
 								}
 								break;
 							case "MisterMind : défenseur":
@@ -271,14 +289,42 @@ public class ModeDeJeu {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 								} else {
+									if (message.equalsIgnoreCase("4 présents, 4 bien placés")) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, votre combinaison a été trouvée.");
+
+									} else {
+										newMessageTextField.setText("");
+										chatTextArea.append("MOI: " + message + "\n");
+										str = fa.getNewTabMister(str, message);
+										System.out.println(" " + str);
+										chatTextArea.append("Ordinateur: " + str + "\n");
+										nbressai++;
+									}
+
+								}
+								break;
+
+							case "MisterMind : duel":
+								if (nbressai > nbr) {
+									JOptionPane.showMessageDialog(null,
+											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+								} else {
+
 									newMessageTextField.setText("");
-									chatTextArea.append("MOI:  " + message + "\n");
-									str = fa.getNewCombinaison(message, str);
-									chatTextArea.append("Ordinateur: " + str + "\n");
+									chatTextArea.append("MOI: " + message + "\n");
+									str = fa.getNewTabMister(str, message);
+									System.out.println(" " + str);
+
+									String m = fa.getIndiceMister(str, message);
+									chatTextArea.append("Ordinateur: " + m + "\n");
+									//String mm = fa.getNewCombinaison(str, String.valueOf(label2));
+									//chatTextArea.append("Ordinateur: " + mm + "\n");
+									//String moi = fa.getIndiceMister(str, mm);
+									//chatTextArea.append("MOI:  " + moi + "\n");
 									nbressai++;
 
 								}
-							case "MisterMind : duel":
 
 								break;
 							default:
@@ -324,7 +370,7 @@ public class ModeDeJeu {
 
 	// Demande puis met à jour la combinaison secrete
 	public void toFind() {
-		String message = JOptionPane.showInputDialog("Entrer le nombre à trouver");
+		String message = JOptionPane.showInputDialog("Entrer la combinaison secrète");
 		label2.setText(" " + message);
 	}
 

@@ -20,19 +20,22 @@ public class Test {
 				recherche.setMode("Recherche +/- : challenger");
 				ModeDeJeu modedj = new ModeDeJeu(recherche.getMode(), new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : challenger");
+				modedj.actifMode = false;
 				
 			} else if (message.equals("2")) {
 				RecherchePM recherche = new RecherchePM();
 				recherche.setMode("Recherche +/- : défenseur");
 				ModeDeJeu modedj = new ModeDeJeu("Recherche +/- : défenseur", new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : défenseur");
+				modedj.actifMode = false;
 				modedj.toFind();
 			} else {
 				RecherchePM recherche = new RecherchePM();
 				recherche.setMode("Recherche +/- : duel");
 				ModeDeJeu modedj = new ModeDeJeu("Recherche +/- : duel", new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : duel");
-				//m.toFind();
+				modedj.actifMode = false;
+				modedj.toFind();
 			}
 			break;
 		
@@ -44,20 +47,21 @@ public class Test {
 				mastermind.setMode("MisterMind : challenger");
 				ModeDeJeu modedj = new ModeDeJeu("MasterMind : challenger", new OutputStreamWriter(System.out));
 				modedj.setMode("MisterMind  : challenger");
-				//mastermind.toFind();
+				modedj.actifMode = true;
 			} else if (mes.equals("2")) {
 				MisterMind mastermind = new MisterMind();
 				mastermind.setMode("MisterMind : défenseur");
 				ModeDeJeu modedj = new ModeDeJeu("MasterMind : défenseur", new OutputStreamWriter(System.out));
 				modedj.setMode("MisterMind : défenseur");
-				//mastermind.toFind();
+				modedj.actifMode = true;
+				modedj.toFind();
 			} else {
 				MisterMind mastermind = new MisterMind();
-				mastermind.setMode("duel");
+				mastermind.setMode("MisterMind : duel");
 				ModeDeJeu modedj = new ModeDeJeu(mastermind.getMode(), new OutputStreamWriter(System.out));
 				modedj.setMode("MisterMind : duel");
-				modedj.setMode("duel");
-				//mastermind.toFind();
+				modedj.actifMode = true;
+				modedj.toFind();
 			}
 			default :
 				break;

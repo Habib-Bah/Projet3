@@ -123,7 +123,7 @@ public class FonctionAuxi {
 		return res;
 	}
 
-
+	// Fin de partie
 	public boolean fin(String s) {
 		int i = 0;
 		int j = 1;
@@ -131,18 +131,140 @@ public class FonctionAuxi {
 		while (j < s.length()) {
 			if (s.substring(i, j).equalsIgnoreCase("=")) {
 				x++;
-				i ++;
-				j ++;
-			}
-			else {
-				i ++;
-				j ++;
+				i++;
+				j++;
+			} else {
+				i++;
+				j++;
 			}
 		}
-		if (x == s.length() - 1) {
+		if (x >=s.length() - 1 ) {
 			return true;
 		} else {
-			return  false;
+			return false;
 		}
+	}
+	
+
+	// Indice de l'ordinateur pour le MasterMind
+
+	public String getIndiceMister(String s1, String s2) {
+		int nbrexistant = 0;
+		int nbrebienplacé = 0;
+		String resultat = "";
+		int x = 0;
+		int y = 1;
+		int i = 0;
+
+		String tab1[] = new String[s1.length()];
+		String tab2[] = new String[s2.length()];
+
+		while (y <= s1.length()) {
+			tab1[i] = s1.substring(x, y);
+			tab2[i] = s2.substring(x, y);
+			x++;
+			y++;
+			i++;
+		}
+
+		for (int l = 0; l < tab1.length; l++) {
+			for (int k = 0; k < tab2.length; k++) {
+				if (tab1[l].equalsIgnoreCase(tab2[k])) {
+					nbrexistant++;
+					if (l == k) {
+						nbrebienplacé++;
+					}
+
+				}
+			}
+
+		}
+
+		switch (nbrexistant) {
+		case 0:
+			resultat = ("Aucun chiffre n'est présent");
+			break;
+		case 1 : 
+			if(nbrebienplacé == 0) {
+				resultat = ("1 présent");
+			}	
+			else{
+				resultat = ("1 présent, 1 bien placé");
+			}
+			break;
+		case 2 :
+			if(nbrebienplacé == 0) {
+				resultat = ("2 présents");
+			}	
+			else if(nbrebienplacé == 1) {
+				resultat = ("2 présents, 1 bien placé");
+			}
+			else {
+				resultat = ("2 présents, 2 bien placés");
+			}
+			break;
+		case 3 :
+			if(nbrebienplacé == 0) {
+				resultat = ("3 présents");
+			}	
+			else if(nbrebienplacé == 1) {
+				resultat = ("3 présents, 1 bien placé");
+			}
+			else  if(nbrebienplacé == 2){
+				resultat = ("3 présents, 2 bien placés");
+			}
+			else {
+				resultat = ("3 présents, 3 bien placés");
+			}
+			break;
+		case 4 :
+			if(nbrebienplacé == 0) {
+				resultat = ("4 présents");
+			}	
+			else if(nbrebienplacé == 1) {
+				resultat = ("4 présents, 1 bien placé");
+			}
+			else  if(nbrebienplacé == 2){
+				resultat = ("4 présents, 2 bien placés");
+			}
+			else if(nbrebienplacé == 3){
+				resultat = ("4 présents, 3 bien placés");
+			}
+			else {
+				resultat = ("4 présents, 4 bien placés");
+			}
+			break;
+		default:
+			break;
+		}
+		return resultat;
+	}
+	
+	//Genère une nouvelle combinaison pour le MiM
+	
+	public String getNewTabMister(String s1, String s2 ) {
+		
+		String tab[] = new String[s1.length()];
+		int i = 0;
+		int y = 1;
+		int x = 0;
+		Random random = new Random();
+		int nbr = random.nextInt(6);
+		String result ="";
+		while (y <= s1.length()) {
+			tab[i] = s1.substring(x, y);
+			x++;
+			y++;
+			i++;
+		}
+		if (!s2.equalsIgnoreCase("4 présents, 4 bien placés")) {
+			tab[0] = ""+nbr;
+			tab[1] = ""+(nbr + 1);
+			tab[2] = ""+(nbr - 1);
+		}
+		for(int l = 0; l < tab.length; l++) {
+			result = result+tab[l];
+		}
+		return result;
 	}
 }

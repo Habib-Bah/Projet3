@@ -1,7 +1,5 @@
 package fr.projet3;
 
-import java.io.*;
-
 public class MisterMind {
 
 	
@@ -21,9 +19,4 @@ public class MisterMind {
 		Mode = mode;
 	}
 
-	
-	public void luncher() {
-		@SuppressWarnings("unused")
-		ModeDeJeu mdj = new ModeDeJeu(getMode(), new OutputStreamWriter(System.out));
-	}
 }
