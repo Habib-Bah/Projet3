@@ -220,6 +220,7 @@ public class ModeDeJeu {
 										chatTextArea.append("MOI:  " + message + "\n");
 										str = fa.getNewCombinaison(message, str);
 										chatTextArea.append("Ordinateur: " + str + "\n");
+										
 										nbressai++;
 									}
 
@@ -234,24 +235,28 @@ public class ModeDeJeu {
 								else {
 
 									newMessageTextField.setText("");
-									chatTextArea.append("MOI:  " + message + "   ");
-									String str = String.valueOf(x);
-									str2 = fa.getNewCombinaison(label2.getText(), str2);
-									System.out.println(" " + str);
-									String mm = fa.getIndice(str, label2.getText());
+									chatTextArea.append("MOI:  " + message + "   ------------->  ");
+
+									String indiceO = fa.getIndice(str, message);
+									String fIindiceP = fa.getIndice(label2.getText(), str2);
+
+									String EndindiceP = fa.getIndice(label2.getText(), str2);
+									System.out.println(" " + str2);
 
 									newMessageTextField.setText("");
 
-									if (fa.fin(mm) == true) {
+									if (fa.fin(indiceO) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianaison sécrète");
+									} else if (fa.fin(EndindiceP) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, votre combianaison sécrète a été trouvée");
 									} else {
-										mm = fa.getIndice(label2.getText(), str2);
-										chatTextArea.append("Ordinateur: " + message + "\n");
-										chatTextArea.append("Ordinateur: " + str + "   ");
-										chatTextArea.append("MOI:  " + mm + "\n");
+										chatTextArea.append("Ordinateur: " + indiceO + "\n");
+										chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
+										chatTextArea.append("Moi: " + EndindiceP + "\n");
 
-										str2 = fa.getNewCombinaison(label2.getText(), str2);
+										str2 = fa.getNewCombinaison(fIindiceP, str2);
 										nbressai++;
 									}
 
@@ -312,20 +317,33 @@ public class ModeDeJeu {
 								} else {
 
 									newMessageTextField.setText("");
-									chatTextArea.append("MOI: " + message + "\n");
-									str = fa.getNewTabMister(str, message);
+									chatTextArea.append("MOI:  " + message + "   ------->  ");
+
+									String indiceO = fa.getIndiceMister(message, str);
+									String fIindiceP = fa.getIndiceMister(label2.getText(), str2);
+
+									String EndindiceP = fa.getIndiceMister(label2.getText(), str2);
+									
 									System.out.println(" " + str);
 
-									String m = fa.getIndiceMister(str, message);
-									chatTextArea.append("Ordinateur: " + m + "\n");
-									//String mm = fa.getNewCombinaison(str, String.valueOf(label2));
-									//chatTextArea.append("Ordinateur: " + mm + "\n");
-									//String moi = fa.getIndiceMister(str, mm);
-									//chatTextArea.append("MOI:  " + moi + "\n");
-									nbressai++;
+									newMessageTextField.setText("");
+
+									if (fa.finPM(indiceO) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, vous avez trouvé la combianaison sécrète");
+									} else if (fa.finPM(EndindiceP) == true) {
+										JOptionPane.showMessageDialog(null,
+												"Fin de partie, votre combianaison sécrète a été trouvée");
+									} else {
+										chatTextArea.append("Ordinateur: " + indiceO + "\n");
+										chatTextArea.append("Ordinateur: " + str2 + "   ------->  ");
+										chatTextArea.append("Moi: " + EndindiceP + "\n");
+
+										str2 = fa.getNewTabMister(str2, fIindiceP);
+										nbressai++;
+									}
 
 								}
-
 								break;
 							default:
 								break;
@@ -371,7 +389,7 @@ public class ModeDeJeu {
 	// Demande puis met à jour la combinaison secrete
 	public void toFind() {
 		String message = JOptionPane.showInputDialog("Entrer la combinaison secrète");
-		label2.setText(" " + message);
+		label2.setText("" + message);
 	}
 
 	// Getter et Setter pour le mode de jeu
