@@ -1,4 +1,4 @@
-package fr.projet3;
+package fr.projet3.oc;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,7 +7,7 @@ import java.util.*;
 
 import javax.swing.*;
 
-public class ModeDeJeu {
+public class FenetreDeJeu {
 
 	private JFrame frame;
 	private JLabel label1;
@@ -30,29 +30,48 @@ public class ModeDeJeu {
 	JMenuBar bar;
 	JButton rejouer = new JButton("Rejouer");
 	Random random = new Random();
-	static int x;
-	int nbr = 10;
+	static int intervalle;
+	int nbr;
 	int nbressai = 0;
+	int NombreDeChiffes;
+	int valeurMin;
+	int valeurMax;
+	//int valeurMin = 1000;
+	//int valeurMax = 9000;
 	public static int randomValue;
 	private String mode;
 	String str;
 	String str2;
 	boolean actifMode;
+	Logging log = new Logging("Début de la partie");
 
 	RecherchePM recherche = new RecherchePM();
 	MisterMind mastermind = new MisterMind();
-	FonctionAuxi fa = new FonctionAuxi();
 
-	public ModeDeJeu(String titre, Writer outPut) {
+	/**
+	 * Constructeur de la classe
+	 * 
+	 */
+
+	public FenetreDeJeu(String titre, Writer outPut) {
 
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
+				try {
+					Configurations conf = new Configurations();
+					setValeurMin(conf.getValeurMin());
+					setValeurMax(conf.getValeurMax());
+					NombreDeChiffes = conf.getNombreDeChiffre();
+					nbr = conf.getNombreEssaieAutorisé();
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
 
-				x = 1000 + random.nextInt(9999 - 1000);
-				str = String.valueOf(x);
-				str2 = String.valueOf(x);
+				intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+				str = String.valueOf(intervalle);
+				str2 = String.valueOf(intervalle);
 
 				frame = new JFrame(titre);
 				frame.setLayout(new BorderLayout());
@@ -75,9 +94,10 @@ public class ModeDeJeu {
 						setMode("Challengeur");
 						nbressai = 0;
 						chatTextArea.setText("");
-						x = 1000 + random.nextInt(9999 - 1000);
-						str = String.valueOf(x);
-						str2 = String.valueOf(x);
+						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+						str = String.valueOf(intervalle);
+						str2 = String.valueOf(intervalle);
+						frame.setTitle("Challengeur");
 					}
 				});
 
@@ -87,10 +107,11 @@ public class ModeDeJeu {
 					public void actionPerformed(ActionEvent e) {
 						setMode("Défenseur");
 						nbressai = 0;
-						chatTextArea.setText("");
-						x = 1000 + random.nextInt(9999 - 1000);
-						str = String.valueOf(x);
-						str2 = String.valueOf(x);
+						chatTextArea.setText(" ");
+						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+						str = String.valueOf(intervalle);
+						str2 = String.valueOf(intervalle);
+						frame.setTitle("Défenseur");
 					}
 				});
 
@@ -101,9 +122,10 @@ public class ModeDeJeu {
 						setMode("Duel");
 						nbressai = 0;
 						chatTextArea.setText("");
-						x = 1000 + random.nextInt(9999 - 1000);
-						str = String.valueOf(x);
-						str2 = String.valueOf(x);
+						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+						str = String.valueOf(intervalle);
+						str2 = String.valueOf(intervalle);
+						frame.setTitle("Duel");
 
 					}
 				});
@@ -185,51 +207,57 @@ public class ModeDeJeu {
 						if (actifMode == false) {
 							switch (getMode()) {
 							case "Recherche +/- : challenger":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								}
 
 								else {
-									String m = fa.getIndice(str, message);
-									if (fa.fin(m) == true) {
+									String m = recherche.donnerIndice(str, message);
+									if (recherche.finDePartie(m) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianaison sécrète");
+										log.ChangeInfoLog("Fin de partie");
 									} else {
 
 										newMessageTextField.setText("");
 										chatTextArea.append("MOI:  " + message + "\n");
-										String str = String.valueOf(x);
+										String str = String.valueOf(intervalle);
 										System.out.println(" " + str);
 										chatTextArea.append("Ordinateur: " + m + "\n");
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
 								break;
 							case "Recherche +/- : défenseur":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								} else {
-									if (fa.fin(message) == true) {
+									if (recherche.finDePartie(message) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, votre combianaison sécrète a été trouvée");
+										log.ChangeInfoLog("Fin de partie");
 									} else {
 										newMessageTextField.setText("");
 										chatTextArea.append("MOI:  " + message + "\n");
-										str = fa.getNewCombinaison(message, str);
+										str = recherche.joue(message, str);
 										chatTextArea.append("Ordinateur: " + str + "\n");
-										
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
 								break;
 							case "Recherche +/- : duel":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								}
 
 								else {
@@ -237,27 +265,29 @@ public class ModeDeJeu {
 									newMessageTextField.setText("");
 									chatTextArea.append("MOI:  " + message + "   ------------->  ");
 
-									String indiceO = fa.getIndice(str, message);
-									String fIindiceP = fa.getIndice(label2.getText(), str2);
+									String indiceO = recherche.donnerIndice(str, message);
+									String fIindiceP = recherche.donnerIndice(label2.getText(), str2);
 
-									String EndindiceP = fa.getIndice(label2.getText(), str2);
+									String EndindiceP = recherche.donnerIndice(label2.getText(), str2);
 									System.out.println(" " + str2);
 
 									newMessageTextField.setText("");
 
-									if (fa.fin(indiceO) == true) {
+									if (recherche.finDePartie(indiceO) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianaison sécrète");
-									} else if (fa.fin(EndindiceP) == true) {
+										log.ChangeInfoLog("Fin de partie");
+									} else if (recherche.finDePartie(EndindiceP) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, votre combianaison sécrète a été trouvée");
+										log.ChangeInfoLog("Fin de partie");
 									} else {
 										chatTextArea.append("Ordinateur: " + indiceO + "\n");
 										chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
 										chatTextArea.append("Moi: " + EndindiceP + "\n");
-
-										str2 = fa.getNewCombinaison(fIindiceP, str2);
+										str2 = recherche.joue(fIindiceP, str2);
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
@@ -270,77 +300,86 @@ public class ModeDeJeu {
 						else if (actifMode == true) {
 							switch (getMode()) {
 							case "MisterMind  : challenger":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								} else {
 									newMessageTextField.setText("");
 									chatTextArea.append("MOI:  " + message + "\n");
-									String str = String.valueOf(x);
+									String str = String.valueOf(intervalle);
 									System.out.println(" " + str);
-									String m = fa.getIndiceMister(str, message);
+									String m = mastermind.donnerIndice(str, message);
 									if (m.equalsIgnoreCase("4 présents, 4 bien placés")) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianison sécrète");
+										log.ChangeInfoLog("Fin de partie");
 									} else {
 										chatTextArea.append("Ordinateur: " + m + "\n");
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
 								break;
 							case "MisterMind : défenseur":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								} else {
 									if (message.equalsIgnoreCase("4 présents, 4 bien placés")) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, votre combinaison a été trouvée.");
+										log.ChangeInfoLog("Fin de partie");
 
 									} else {
 										newMessageTextField.setText("");
 										chatTextArea.append("MOI: " + message + "\n");
-										str = fa.getNewTabMister(str, message);
+										str = mastermind.joue(str, message);
 										System.out.println(" " + str);
 										chatTextArea.append("Ordinateur: " + str + "\n");
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
 								break;
 
 							case "MisterMind : duel":
-								if (nbressai > nbr) {
+								if (nbressai >= nbr) {
 									JOptionPane.showMessageDialog(null,
 											"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+									log.ChangeInfoLog("Fin de partie");
 								} else {
 
 									newMessageTextField.setText("");
 									chatTextArea.append("MOI:  " + message + "   ------->  ");
 
-									String indiceO = fa.getIndiceMister(message, str);
-									String fIindiceP = fa.getIndiceMister(label2.getText(), str2);
+									String indiceO = mastermind.donnerIndice(message, str);
+									String fIindiceP = mastermind.donnerIndice(label2.getText(), str2);
 
-									String EndindiceP = fa.getIndiceMister(label2.getText(), str2);
-									
+									String EndindiceP = mastermind.joue(label2.getText(), str2);
+
 									System.out.println(" " + str);
 
 									newMessageTextField.setText("");
 
-									if (fa.finPM(indiceO) == true) {
+									if (mastermind.finDePartie(indiceO) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez trouvé la combianaison sécrète");
-									} else if (fa.finPM(EndindiceP) == true) {
+										log.ChangeInfoLog("Fin de partie");
+									} else if (mastermind.finDePartie(EndindiceP) == true) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, votre combianaison sécrète a été trouvée");
+										log.ChangeInfoLog("Fin de partie");
 									} else {
 										chatTextArea.append("Ordinateur: " + indiceO + "\n");
 										chatTextArea.append("Ordinateur: " + str2 + "   ------->  ");
 										chatTextArea.append("Moi: " + EndindiceP + "\n");
-
-										str2 = fa.getNewTabMister(str2, fIindiceP);
+										str2 = mastermind.joue(str2, fIindiceP);
 										nbressai++;
+										log.ChangeInfoLog("essais " + nbressai);
 									}
 
 								}
@@ -361,7 +400,7 @@ public class ModeDeJeu {
 					public void actionPerformed(ActionEvent e) {
 						chatTextArea.setText(" ");
 						nbressai = 0;
-						x = 1000 + random.nextInt(9999 - 1000);
+						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
 					}
 				});
 
@@ -392,13 +431,63 @@ public class ModeDeJeu {
 		label2.setText("" + message);
 	}
 
-	// Getter et Setter pour le mode de jeu
+	/**
+	 * getter recupérant le mode du jeu au quel on joue
+	 * 
+	 * @return String mode
+	 */
+
 	public String getMode() {
 		return this.mode;
 	}
 
+	/**
+	 * setter modifiant le mode du jeu
+	 * 
+	 * @param le mode
+	 * 
+	 */
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
+
+	/**
+	 * methode qui renvoie le nombre minimun de cases de la combinaison secrète
+	 * 
+	 * @return un int
+	 */
+	public int getValeurMin() {
+		return valeurMin;
+	}
+
+	/**
+	 * methode qui change le nombre minimun de cases de la combinaison secrète
+	 * 
+	 * @param la valeur minimale
+	 */
+
+	public void setValeurMin(int valeurMin) {
+		this.valeurMin = valeurMin;
+	}
+
+	/**
+	 * methode qui renvoie le nombre maximun de cases de la combinaison secrète
+	 * 
+	 * @return un int
+	 */
+	public int getValeurMax() {
+		return valeurMax;
+	}
+
+	/**
+	 * methode qui change le nombre maximale de cases de la combinaison secrète
+	 * 
+	 * @param la valeur maximale
+	 */
+
+	public void setValeurMax(int valeurMax) {
+		this.valeurMax = valeurMax;
+	}
+	
 
 }
