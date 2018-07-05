@@ -1,11 +1,11 @@
 package fr.projet3.oc;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
+@SuppressWarnings("unused")
 public class Logging {
 
-	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger("loggerForLog4J");
 	private String message;
 	Log my_log;
@@ -19,17 +19,13 @@ public class Logging {
 		this.message = message;
 		try {
 			my_log = new Log("./log4j");
-			my_log.logger.setLevel(Level.INFO);
 			my_log.logger.info(getMessage());
-			// my_log.logger.warning(getMessage());
-			// my_log.logger.severe(getMessage());
 		} catch (Exception e) {
 
 		}
 	}
 
 	public void ChangeInfoLog(String message) {
-		my_log.logger.setLevel(Level.INFO);
 		my_log.logger.info(message);
 	}
 

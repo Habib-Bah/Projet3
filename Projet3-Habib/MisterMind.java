@@ -2,7 +2,7 @@ package fr.projet3.oc;
 
 import java.util.*;
 
-public class MisterMind extends Jouer {
+public class MisterMind extends Jeu{
 
 	String title;
 	private String Mode;
@@ -36,7 +36,7 @@ public class MisterMind extends Jouer {
 	}
 
 	/**
-	 * methode joue qui permet à un l'ordinateur je jouer un coup
+	 * methode jouer qui permet à un l'ordinateur je jouer un coup
 	 * 
 	 * 
 	 * @param les deux String, la première etant la proposition du joueur et la

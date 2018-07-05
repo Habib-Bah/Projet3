@@ -1,6 +1,6 @@
 package fr.projet3.oc;
 
-public abstract class Jouer {
+public abstract class Jeu {
 
 	public abstract String joue(String s1, String s2);
 

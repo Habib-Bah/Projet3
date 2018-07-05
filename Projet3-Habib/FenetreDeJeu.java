@@ -36,8 +36,6 @@ public class FenetreDeJeu {
 	int NombreDeChiffes;
 	int valeurMin;
 	int valeurMax;
-	//int valeurMin = 1000;
-	//int valeurMax = 9000;
 	public static int randomValue;
 	private String mode;
 	String str;
@@ -227,6 +225,7 @@ public class FenetreDeJeu {
 										System.out.println(" " + str);
 										chatTextArea.append("Ordinateur: " + m + "\n");
 										nbressai++;
+										log.ChangeInfoLog("Valeur entré : " + message + "   Valeur à trouver : " + str);
 										log.ChangeInfoLog("essais " + nbressai);
 									}
 
@@ -248,6 +247,8 @@ public class FenetreDeJeu {
 										str = recherche.joue(message, str);
 										chatTextArea.append("Ordinateur: " + str + "\n");
 										nbressai++;
+										log.ChangeInfoLog(
+												"Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
 										log.ChangeInfoLog("essais " + nbressai);
 									}
 
@@ -283,8 +284,12 @@ public class FenetreDeJeu {
 										log.ChangeInfoLog("Fin de partie");
 									} else {
 										chatTextArea.append("Ordinateur: " + indiceO + "\n");
+										log.ChangeInfoLog(
+												"Valeur entrée : " + message + "   Valeur à trouver : " + str);
 										chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
 										chatTextArea.append("Moi: " + EndindiceP + "\n");
+										log.ChangeInfoLog("Valeur donnée : " + str2 + "   Valeur à trouver : "
+												+ label2.getText());
 										str2 = recherche.joue(fIindiceP, str2);
 										nbressai++;
 										log.ChangeInfoLog("essais " + nbressai);
@@ -317,6 +322,8 @@ public class FenetreDeJeu {
 									} else {
 										chatTextArea.append("Ordinateur: " + m + "\n");
 										nbressai++;
+										log.ChangeInfoLog(
+												"Valeur entrée : " + message + "   Valeur à trouver : " + str);
 										log.ChangeInfoLog("essais " + nbressai);
 									}
 
@@ -340,6 +347,8 @@ public class FenetreDeJeu {
 										System.out.println(" " + str);
 										chatTextArea.append("Ordinateur: " + str + "\n");
 										nbressai++;
+										log.ChangeInfoLog(
+												"Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
 										log.ChangeInfoLog("essais " + nbressai);
 									}
 
@@ -375,9 +384,12 @@ public class FenetreDeJeu {
 										log.ChangeInfoLog("Fin de partie");
 									} else {
 										chatTextArea.append("Ordinateur: " + indiceO + "\n");
+										log.ChangeInfoLog("Valeur entré : " + message + "   Valeur à trouver : " + str);
 										chatTextArea.append("Ordinateur: " + str2 + "   ------->  ");
 										chatTextArea.append("Moi: " + EndindiceP + "\n");
 										str2 = mastermind.joue(str2, fIindiceP);
+										log.ChangeInfoLog("Valeur donnée : " + str2 + "   Valeur à trouver : "
+												+ label2.getText());
 										nbressai++;
 										log.ChangeInfoLog("essais " + nbressai);
 									}
@@ -425,7 +437,11 @@ public class FenetreDeJeu {
 
 	}
 
-	// Demande puis met à jour la combinaison secrete
+	/**
+	 * methode qui demande à l'utilisateur de rentrer sa combianaison sécrète
+	 * 
+	 */
+
 	public void toFind() {
 		String message = JOptionPane.showInputDialog("Entrer la combinaison secrète");
 		label2.setText("" + message);
@@ -452,7 +468,7 @@ public class FenetreDeJeu {
 	}
 
 	/**
-	 * methode qui renvoie le nombre minimun de cases de la combinaison secrète
+	 * getter qui renvoie le nombre minimun de cases de la combinaison secrète
 	 * 
 	 * @return un int
 	 */
@@ -461,7 +477,7 @@ public class FenetreDeJeu {
 	}
 
 	/**
-	 * methode qui change le nombre minimun de cases de la combinaison secrète
+	 * setter qui change le nombre minimun de cases de la combinaison secrète
 	 * 
 	 * @param la valeur minimale
 	 */
@@ -471,7 +487,7 @@ public class FenetreDeJeu {
 	}
 
 	/**
-	 * methode qui renvoie le nombre maximun de cases de la combinaison secrète
+	 * getter qui renvoie le nombre maximun de cases de la combinaison secrète
 	 * 
 	 * @return un int
 	 */
@@ -480,7 +496,7 @@ public class FenetreDeJeu {
 	}
 
 	/**
-	 * methode qui change le nombre maximale de cases de la combinaison secrète
+	 * setter qui change le nombre maximale de cases de la combinaison secrète
 	 * 
 	 * @param la valeur maximale
 	 */
@@ -488,6 +504,5 @@ public class FenetreDeJeu {
 	public void setValeurMax(int valeurMax) {
 		this.valeurMax = valeurMax;
 	}
-	
 
 }

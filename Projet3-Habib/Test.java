@@ -10,6 +10,7 @@ public class Test {
 
 		Luncher l = new Luncher();
 		l.run();
+
 	}
 
 }

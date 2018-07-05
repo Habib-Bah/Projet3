@@ -1,6 +1,6 @@
 package fr.projet3.oc;
 
-public class RecherchePM extends Jouer {
+public class RecherchePM extends Jeu {
 
 	String title;
 	private String Mode;
