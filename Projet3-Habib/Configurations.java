@@ -9,7 +9,7 @@ public class Configurations {
 	private int valeurMax;
 	private int nombreDeChiffre;
 	private int nombreEssaieAutorisé;
-	
+
 	public Configurations() throws IOException {
 		MiseAJourDesValeurs();
 	}
@@ -77,19 +77,19 @@ public class Configurations {
 	}
 
 	/**
-	 * getter recupérant le nombre d'essaie donné par l'utilisateur
-	 * dans le fichier de configuration
+	 * getter recupérant le nombre d'essaie donné par l'utilisateur dans le fichier
+	 * de configuration
 	 * 
 	 * @return int valeurMax
 	 */
-	
+
 	public int getNombreEssaieAutorisé() {
 		return nombreEssaieAutorisé;
 	}
 
 	/**
-	 * setter modifiant le nombre d'essaie autorisé donné par l'utilisateur
-	 * dans le fichier de configuration
+	 * setter modifiant le nombre d'essaie autorisé donné par l'utilisateur dans le
+	 * fichier de configuration
 	 * 
 	 * @param le mode
 	 * 
@@ -100,22 +100,28 @@ public class Configurations {
 
 	/**
 	 * methode de mise à jour des valeurs présentes dans le fichier de configuraton
-	 * à savoir le nombre de chiffres autorisés, la valeur minimale et maximale qui 
+	 * à savoir le nombre de chiffres autorisés, la valeur minimale et maximale qui
 	 * pourra etre générée
 	 * 
 	 */
 	public void MiseAJourDesValeurs() throws IOException {
-		Path path = Paths.get("Ressources/config_properties");
-		String tab[] = new String[4];
+		Path path = Paths.get("Ressources/config.properties");
+		String tab[] = new String[5];
+
 		int i = 0;
 
 		for (String lignes : Files.readAllLines(path)) {
 			tab[i] = lignes;
 			i++;
 		}
-		setnombreDeChiffre(Integer.parseInt(tab[0]));
-		setValeurMin(Integer.parseInt(tab[1]));
-		setValeurMax(Integer.parseInt(tab[2]));
-		setNombreEssaieAutorisé(Integer.parseInt(tab[3]));
+		
+		String[] tab1 = tab[0].split(": ");
+		String[] tab2 = tab[1].split(": ");
+		String[] tab3 = tab[2].split(": ");
+		String[] tab4 = tab[3].split(": ");
+		setnombreDeChiffre(Integer.parseInt(tab1[1]));
+		setValeurMin(Integer.parseInt(tab2[1]));
+		setValeurMax(Integer.parseInt(tab3[1]));
+		setNombreEssaieAutorisé(Integer.parseInt(tab4[1]));
 	}
 }
