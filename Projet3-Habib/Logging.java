@@ -26,7 +26,9 @@ public class Logging {
 	}
 
 	public void ChangeInfoLog(String message) {
+
 		my_log.logger.info(message);
+
 	}
 
 	/**
