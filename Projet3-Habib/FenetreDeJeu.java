@@ -12,13 +12,11 @@ public class FenetreDeJeu {
 	private JFrame frame;
 	private JLabel label1;
 	private JLabel label2;
+	private JLabel label3;
 	JMenu select;
-	JMenuItem[] it;
 	JMenuItem[] ins;
 	JMenu instructions;
-	JMenuItem b1;
-	JMenuItem b2;
-	JMenuItem b3;
+	JMenuItem rejouer;
 	JMenuItem i1;
 	JMenuItem i2;
 	JMenuItem i3;
@@ -28,7 +26,6 @@ public class FenetreDeJeu {
 	JTextArea chatTextArea;
 	JScrollPane chatscrollPane;
 	JMenuBar bar;
-	JButton rejouer = new JButton("Rejouer");
 	Random random = new Random();
 	static int intervalle;
 	int nbr;
@@ -42,6 +39,8 @@ public class FenetreDeJeu {
 	String str2;
 	boolean actifMode;
 	Logging log = new Logging("Début de la partie");
+	String modeDeveloppeur;
+	int borne;
 
 	Jeu jeu;
 
@@ -62,70 +61,41 @@ public class FenetreDeJeu {
 					setValeurMax(conf.getValeurMax());
 					NombreDeChiffes = conf.getNombreDeChiffre();
 					nbr = conf.getNombreEssaieAutorisé();
+					modeDeveloppeur = conf.getModeDeveloppeur();
+					conf.setValeur(intervalle);
+					borne = conf.getValeur();
 				} catch (IOException e2) {
 					e2.printStackTrace();
 				}
 
 				intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+
+				if (modeDeveloppeur.equalsIgnoreCase("oui")) {
+					if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
+							|| getMode().equalsIgnoreCase("MisterMind  : challenger")
+							|| getMode().equalsIgnoreCase("Recherche +/- : duel")
+							|| getMode().equalsIgnoreCase("MisterMind : duel")) {
+						label3 = new JLabel(" CombianisonOrdi:" + intervalle + " ");
+					} else {
+						label3 = new JLabel("CombianisonOrdi : ????  ");
+					}
+
+				} else {
+					label3 = new JLabel("CombianisonOrdi : ????  ");
+				}
 				str = String.valueOf(intervalle);
 				str2 = String.valueOf(intervalle);
 
 				frame = new JFrame(titre);
 				frame.setLayout(new BorderLayout());
 
-				b1 = new JMenuItem("Challengeur");
-				b2 = new JMenuItem("Défenseur");
-				b3 = new JMenuItem("duel");
-
+				rejouer = new JMenuItem("rejouer");
 				i1 = new JMenuItem("Inst-Challengeur");
 				i2 = new JMenuItem("Inst-Défenseur");
 				i3 = new JMenuItem("Inst-duel");
 
-				select = new JMenu("Mode");
 				instructions = new JMenu("Instructions");
-
-				b1.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						setMode("Challengeur");
-						nbressai = 0;
-						chatTextArea.setText("");
-						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
-						str = String.valueOf(intervalle);
-						str2 = String.valueOf(intervalle);
-						frame.setTitle("Challengeur");
-					}
-				});
-
-				b2.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						setMode("Défenseur");
-						nbressai = 0;
-						chatTextArea.setText(" ");
-						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
-						str = String.valueOf(intervalle);
-						str2 = String.valueOf(intervalle);
-						frame.setTitle("Défenseur");
-					}
-				});
-
-				b3.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						setMode("Duel");
-						nbressai = 0;
-						chatTextArea.setText("");
-						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
-						str = String.valueOf(intervalle);
-						str2 = String.valueOf(intervalle);
-						frame.setTitle("Duel");
-
-					}
-				});
+				select = new JMenu("Selection");
 
 				i1.addActionListener(new ActionListener() {
 
@@ -157,31 +127,25 @@ public class FenetreDeJeu {
 					}
 				});
 
-				it = new JMenuItem[3];
-				it[0] = b1;
-				it[1] = b2;
-				it[2] = b3;
-
 				ins = new JMenuItem[3];
 				ins[0] = i1;
 				ins[1] = i2;
 				ins[2] = i3;
 
-				for (JMenuItem i : it)
-					select.add(i);
-
 				for (JMenuItem i : ins) {
 					instructions.add(i);
 				}
 
-				label1 = new JLabel(" Combinaison:");
+				select.add(instructions);
+				select.add(rejouer);
+
+				label1 = new JLabel(" CombinaisonPlayer:");
 				label2 = new JLabel("  :" + nombre);
 
 				bar = new JMenuBar();
 				bar.setPreferredSize(new Dimension(800, 20));
-				bar.add(instructions);
 				bar.add(select);
-				bar.add(rejouer);
+				bar.add(label3);
 				bar.add(label1);
 				bar.add(label2);
 				frame.add(bar);
@@ -455,6 +419,10 @@ public class FenetreDeJeu {
 	public void toFind() {
 		String message = JOptionPane.showInputDialog("Entrer la combinaison secrète");
 		label2.setText("" + message);
+	}
+
+	public void modeDeveloppeur() {
+		label3.setText("CombinaisonO : " + intervalle);
 	}
 
 	/**
