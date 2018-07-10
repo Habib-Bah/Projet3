@@ -65,12 +65,12 @@ public class MisterMind extends Jeu{
 
 			for (int j = 0; j < tab.length; j++) {
 				if (tab[j].equals("" + 0)) {
-					nbr = nbr + 2;
+					nbr = nbr + 1;
 					tab[j] = "" + nbr;
-				} else if (tab[j].equals("" + 9)) {
+				} if (tab[j].equals("" + 9)) {
 					nbr = nbr - 2;
 					tab[j] = "" + nbr;
-				} else if (tab[j].equals("" + 8)) {
+				} if (tab[j].equals("" + 8)) {
 					nbr = nbr - 1;
 					tab[j] = "" + nbr;
 				} else

@@ -188,6 +188,50 @@ public class Configurations {
 	}
 
 	/**
+	 * methode qui formate la combinaison à trouvée de manière à ce qu'aucun chiffre
+	 * ne depasse le nombre de chiffres utilisable
+	 * 
+	 * @return int valeur
+	 */
+
+	public int getValeurUtilisable(int val) {
+
+		int nbUse = getNombreDeChiffreUtilisables();
+		int i = 0;
+		int j = 1;
+		int comp = 0;
+		String valS = "" + val;
+		System.out.println(valS);
+		String tab[] = new String[valS.length()];
+		String resS = "";
+		int resi;
+		int tabi[] = new int[valS.length()];
+
+		while (j <= valS.length()) {
+			tab[comp] = valS.substring(i, j);
+			i++;
+			j++;
+			comp++;
+		}
+
+		for (int yy = 0; yy < tab.length; yy++) {
+			tabi[yy] = Integer.parseInt(tab[yy]);
+		}
+
+		for (int valT : tabi) {
+			if (valT > nbUse) {
+				resS = resS + nbUse;
+			} else {
+				resS = resS + valT;
+			}
+		}
+
+		resi = Integer.parseInt(resS);
+		return resi;
+
+	}
+
+	/**
 	 * methode de mise à jour des valeurs présentes dans le fichier de configuraton
 	 * 
 	 */
