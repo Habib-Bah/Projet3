@@ -8,7 +8,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 
-		Luncher l = new Luncher();
+		Launcher l = new Launcher();
 		l.run();
 
 	}
