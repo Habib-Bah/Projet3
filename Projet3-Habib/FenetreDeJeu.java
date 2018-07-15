@@ -203,6 +203,7 @@ public class FenetreDeJeu {
 									}
 									break;
 								case "Recherche +/- : défenseur":
+
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -229,6 +230,7 @@ public class FenetreDeJeu {
 									}
 									break;
 								case "Recherche +/- : duel":
+
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -282,10 +284,10 @@ public class FenetreDeJeu {
 							}
 
 							else if (actifMode == true) {
-								jeu = new MisterMind();
+								jeu = new MasterMind();
 								intervalle = borne;
 								switch (getMode()) {
-								case "MisterMind  : challenger":
+								case "MasterMind  : challenger":
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -312,7 +314,8 @@ public class FenetreDeJeu {
 
 									}
 									break;
-								case "MisterMind : défenseur":
+								case "MasterMind : défenseur":
+
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -340,7 +343,8 @@ public class FenetreDeJeu {
 									}
 									break;
 
-								case "MisterMind : duel":
+								case "MasterMind : duel":
+
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
@@ -433,8 +437,14 @@ public class FenetreDeJeu {
 	 */
 
 	public void toFind() {
-		String message = JOptionPane.showInputDialog("Entrer la combinaison secrète");
+
+		String message = JOptionPane.showInputDialog(null, "Entrez la combinason secrète");
+		while (message.length() > NombreDeChiffes || message.length() < NombreDeChiffes) {
+			message = JOptionPane.showInputDialog(null, "Un chiffre d'une longueur de " + message.length()
+					+ " a été saisi. Veuillez en saisir un d'une longueur de " + NombreDeChiffes);
+		}
 		label2.setText("" + message);
+
 	}
 
 	public void modeDeveloppeur() {

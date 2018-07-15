@@ -2,7 +2,7 @@ package fr.projet3.oc;
 
 import java.util.*;
 
-public class MisterMind extends Jeu{
+public class MasterMind extends Jeu{
 
 	String title;
 	private String Mode;
@@ -12,7 +12,7 @@ public class MisterMind extends Jeu{
 	 * Constructeur de la classe
 	 * 
 	 */
-	public MisterMind() {
+	public MasterMind() {
 		this.actif = true;
 	}
 
