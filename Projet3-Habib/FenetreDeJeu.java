@@ -84,6 +84,7 @@ public class FenetreDeJeu {
 				} else {
 					label3 = new JLabel("CombianisonOrdi : ????  ");
 				}
+
 				str = String.valueOf(intervalle);
 				str2 = String.valueOf(intervalle);
 
@@ -173,108 +174,132 @@ public class FenetreDeJeu {
 								intervalle = borne;
 								switch (getMode()) {
 								case "Recherche +/- : challenger":
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-
-										logger.info("Fin de partie");
-									}
-
-									else {
-										String m = jeu.donnerIndice(str, message);
-										if (jeu.finDePartie(m) == true) {
+									if (message.length() < NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
+										newMessageTextField.setText("");
+									} else {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, vous avez trouvé la combianaison sécrète");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											logger.info("Fin de partie");
-										} else {
-
-											newMessageTextField.setText("");
-											chatTextArea.append("MOI:  " + message + "\n");
-											String str = String.valueOf(borne);
-											System.out.println(" " + str);
-											chatTextArea.append("Ordinateur: " + m + "\n");
-											nbressai++;
-
-											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-											logger.info("essais " + nbressai);
 										}
 
+										else {
+											String m = jeu.donnerIndice(str, message);
+											if (jeu.finDePartie(m) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, vous avez trouvé la combianaison sécrète");
+
+												logger.info("Fin de partie");
+											} else {
+
+												newMessageTextField.setText("");
+												chatTextArea.append("MOI:  " + message + "\n");
+												String str = String.valueOf(borne);
+												System.out.println(" " + str);
+												chatTextArea.append("Ordinateur: " + m + "\n");
+												nbressai++;
+
+												logger.info(
+														"Valeur entrée : " + message + "   Valeur à trouver : " + str);
+												logger.info("essais " + nbressai);
+											}
+
+										}
 									}
+
 									break;
 								case "Recherche +/- : défenseur":
 
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-
-										logger.info("Fin de partie");
+									if (message.length() < NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
+										newMessageTextField.setText("");
 									} else {
-										if (jeu.finDePartie(message) == true) {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, votre combianaison sécrète a été trouvée");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											logger.info("Fin de partie");
 										} else {
-											newMessageTextField.setText("");
-											chatTextArea.append("MOI:  " + message + "\n");
-											str = jeu.joue(message, str);
-											chatTextArea.append("Ordinateur: " + str + "\n");
-											nbressai++;
+											if (jeu.finDePartie(message) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, votre combianaison sécrète a été trouvée");
 
-											logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
-													+ label2.getText());
-											logger.info("essais " + nbressai);
+												logger.info("Fin de partie");
+											} else {
+												newMessageTextField.setText("");
+												chatTextArea.append("MOI:  " + message + "\n");
+												str = jeu.joue(message, str);
+												chatTextArea.append("Ordinateur: " + str + "\n");
+												nbressai++;
+
+												logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
+														+ label2.getText());
+												logger.info("essais " + nbressai);
+											}
+
 										}
-
 									}
+
 									break;
 								case "Recherche +/- : duel":
 
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-
-										logger.info("Fin de partie");
-									}
-
-									else {
-
+									if (message.length() < NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
-										chatTextArea.append("MOI:  " + message + "   ------------->  ");
-
-										String indiceO = jeu.donnerIndice(str, message);
-										String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
-
-										String EndindiceP = jeu.donnerIndice(label2.getText(), str2);
-										System.out.println(" " + str2);
-
-										newMessageTextField.setText("");
-
-										if (jeu.finDePartie(indiceO) == true) {
+									} else {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, vous avez trouvé la combianaison sécrète");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											logger.info("Fin de partie");
 										}
-										if (jeu.finDePartie(EndindiceP) == true) {
-											JOptionPane.showMessageDialog(null,
-													"Fin de partie, votre combianaison sécrète a été trouvée");
 
-											logger.info("Fin de partie");
+										else {
+
+											newMessageTextField.setText("");
+											chatTextArea.append("MOI:  " + message + "   ------------->  ");
+
+											String indiceO = jeu.donnerIndice(str, message);
+											String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
+
+											String EndindiceP = jeu.donnerIndice(label2.getText(), str2);
+											System.out.println(" " + str2);
+
+											newMessageTextField.setText("");
+
+											if (jeu.finDePartie(indiceO) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, vous avez trouvé la combianaison sécrète");
+
+												logger.info("Fin de partie");
+											}
+											if (jeu.finDePartie(EndindiceP) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, votre combianaison sécrète a été trouvée");
+
+												logger.info("Fin de partie");
+											}
+											chatTextArea.append("Ordinateur: " + indiceO + "\n");
+
+											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
+											chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
+											chatTextArea.append("Moi: " + EndindiceP + "\n");
+
+											logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
+													+ label2.getText());
+											str2 = jeu.joue(fIindiceP, str2);
+											nbressai++;
+
+											logger.info("essais " + nbressai);
 										}
-										chatTextArea.append("Ordinateur: " + indiceO + "\n");
-
-										logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-										chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
-										chatTextArea.append("Moi: " + EndindiceP + "\n");
-
-										logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
-												+ label2.getText());
-										str2 = jeu.joue(fIindiceP, str2);
-										nbressai++;
-
-										logger.info("essais " + nbressai);
 									}
 
 									break;
@@ -284,102 +309,129 @@ public class FenetreDeJeu {
 							}
 
 							else if (actifMode == true) {
-								jeu = new MasterMind();
-								intervalle = borne;
-								switch (getMode()) {
-								case "MasterMind  : challenger":
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
-										logger.info("Fin de partie");
-									} else {
+								switch (getMode()) {
+
+								case "MasterMind  : challenger":
+									jeu = new MasterMind();
+									intervalle = borne;
+									if (message.length() < NombreDeChiffes || message.length() > NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
-										chatTextArea.append("MOI:  " + message + "\n");
-										String str = String.valueOf(intervalle);
-										String m = jeu.donnerIndice(str, message);
-										if (m.equalsIgnoreCase("4 présents, 4 bien placés")) {
+									} else {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, vous avez trouvé la combianison sécrète");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											logger.info("Fin de partie");
 										} else {
-											System.out.println(" " + str);
-											chatTextArea.append("Ordinateur: " + m + "\n");
-											nbressai++;
+											newMessageTextField.setText("");
+											chatTextArea.append("MOI:  " + message + "\n");
+											String str = String.valueOf(intervalle);
+											String m = jeu.donnerIndice(str, message);
+											if (m.equalsIgnoreCase("4 présents, 4 bien placés")) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, vous avez trouvé la combianison sécrète");
 
-											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-											logger.info("essais " + nbressai);
+												logger.info("Fin de partie");
+											} else {
+												System.out.println(" " + str);
+												chatTextArea.append("Ordinateur: " + m + "\n");
+												nbressai++;
+
+												logger.info(
+														"Valeur entrée : " + message + "   Valeur à trouver : " + str);
+												logger.info("essais " + nbressai);
+											}
+
 										}
-
 									}
+
 									break;
 								case "MasterMind : défenseur":
 
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-
-										logger.info("Fin de partie");
+									if (message.length() < NombreDeChiffes || message.length() > NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
+										newMessageTextField.setText("");
 									} else {
-										if (message.equalsIgnoreCase("4 présents, 4 bien placés")) {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, votre combinaison a été trouvée.");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											logger.info("Fin de partie");
-
 										} else {
-											newMessageTextField.setText("");
-											chatTextArea.append("MOI: " + message + "\n");
-											str = jeu.joue(str, message);
-											chatTextArea.append("Ordinateur: " + str + "\n");
-											nbressai++;
+											if (message.equalsIgnoreCase("4 présents, 4 bien placés")) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, votre combinaison a été trouvée.");
 
-											logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
-													+ label2.getText());
-											logger.info("essais " + nbressai);
+												logger.info("Fin de partie");
+
+											} else {
+												newMessageTextField.setText("");
+												chatTextArea.append("MOI: " + message + "\n");
+												str = jeu.joue(str, message);
+												chatTextArea.append("Ordinateur: " + str + "\n");
+												nbressai++;
+
+												logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
+														+ label2.getText());
+												logger.info("essais " + nbressai);
+											}
+
 										}
-
 									}
+
 									break;
 
 								case "MasterMind : duel":
 
-									if (nbressai >= nbr) {
-										JOptionPane.showMessageDialog(null,
-												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-										logger.info("Fin de partie");
+									if (message.length() < NombreDeChiffes || message.length() > NombreDeChiffes) {
+										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
+												+ NombreDeChiffes + "\n");
+										newMessageTextField.setText("");
 									} else {
-
-										newMessageTextField.setText("");
-										chatTextArea.append("MOI:  " + message + "   ------->  ");
-
-										String indiceO = jeu.donnerIndice(message, str);
-										String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
-
-										String EndindiceP = jeu.joue(label2.getText(), str2);
-
-										newMessageTextField.setText("");
-
-										if (jeu.finDePartie(indiceO) == true) {
+										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
-													"Fin de partie, vous avez trouvé la combianaison sécrète");
+													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 											logger.info("Fin de partie");
+										} else {
+
+											newMessageTextField.setText("");
+											chatTextArea.append("MOI:  " + message + "   ------->  ");
+
+											String indiceO = jeu.donnerIndice(message, str);
+											String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
+
+											String EndindiceP = jeu.joue(label2.getText(), str2);
+
+											newMessageTextField.setText("");
+
+											if (jeu.finDePartie(indiceO) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, vous avez trouvé la combianaison sécrète");
+												logger.info("Fin de partie");
+											}
+											if (jeu.finDePartie(EndindiceP) == true) {
+												JOptionPane.showMessageDialog(null,
+														"Fin de partie, votre combianaison sécrète a été trouvée");
+												logger.info("Fin de partie");
+											}
+											chatTextArea.append("Ordinateur: " + indiceO + "\n");
+											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
+											chatTextArea.append("Ordinateur: " + str2 + "   ------->  ");
+											chatTextArea.append("Moi: " + fIindiceP + "\n");
+											str2 = jeu.joue(str2, EndindiceP);
+											nbressai++;
+											logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
+													+ label2.getText());
+											logger.info("essais " + nbressai);
+
 										}
-										if (jeu.finDePartie(EndindiceP) == true) {
-											JOptionPane.showMessageDialog(null,
-													"Fin de partie, votre combianaison sécrète a été trouvée");
-											logger.info("Fin de partie");
-										}
-										chatTextArea.append("Ordinateur: " + indiceO + "\n");
-										logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-										chatTextArea.append("Ordinateur: " + str2 + "   ------->  ");
-										chatTextArea.append("Moi: " + fIindiceP + "\n");
-										str2 = jeu.joue(str2, EndindiceP);
-										nbressai++;
-										logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
-												+ label2.getText());
-										logger.info("essais " + nbressai);
 
 									}
 
@@ -391,8 +443,13 @@ public class FenetreDeJeu {
 							}
 
 						} catch (Exception e2) {
-							System.out.println(
-									" \n Erreur de valeur. \n Veuillez consulter le fichier de configuration pour connaitre \n le nombre de chiffres autorisé");
+							System.out.println("Un chiffre d'une longueur de " + message.length()
+									+ " a été saisi. \nVeuillez en saisir un d'une longueur de " + NombreDeChiffes
+									+ "\n");
+							chatTextArea.append("Un chiffre d'une longueur de " + message.length()
+									+ " a été saisi. \nVeuillez en saisir un d'une longueur de " + NombreDeChiffes
+									+ "\n");
+							newMessageTextField.setText("");
 
 						}
 					}
@@ -415,6 +472,11 @@ public class FenetreDeJeu {
 				chatTextArea.setEditable(false);
 				chatscrollPane = new JScrollPane(chatTextArea);
 				frame.add(chatscrollPane, BorderLayout.CENTER);
+
+				if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
+						|| getMode().equalsIgnoreCase("MisterMind : défenseur")) {
+					chatTextArea.setText("Ordinateur: " + str + "\n");
+				}
 
 				frame.setResizable(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -507,6 +569,10 @@ public class FenetreDeJeu {
 
 	public void setValeurMax(int valeurMax) {
 		this.valeurMax = valeurMax;
+	}
+
+	public void appendfirstmsg(String m) {
+		chatTextArea.append(m + "\n");
 	}
 
 }
