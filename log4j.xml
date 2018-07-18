@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration  SYSTEM "log4j.dtd" >
+<log4j:configuration>
+    <appender name="file" class="org.apache.log4j.FileAppender">
+        <param name="file" value="./logfile.log" />
+        <param name="append" value="false" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%d{yyyy-MM-dd HH:mm:ss } %-5p - %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="INFO" />
+            <param name="levelMax" value="FATAL" />
+        </filter>
+    </appender>
+    <root>
+        <priority value="debug"></priority>
+        <appender-ref ref="file" />
+    </root>
+</log4j:configuration>
