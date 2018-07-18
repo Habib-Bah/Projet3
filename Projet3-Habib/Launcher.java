@@ -15,6 +15,8 @@ public class Launcher {
 	public void run() {
 
 		Logger logger = Logger.getLogger(Launcher.class);
+		
+		logger.info("Lancement de l'application");
 
 		String mode = JOptionPane
 				.showInputDialog("Tapez 1 pour le jouer à Recherche +/-; \n Tapez 2 pour jouer à MasterMind \n ");

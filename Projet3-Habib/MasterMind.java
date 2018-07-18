@@ -53,7 +53,7 @@ public class MasterMind extends Jeu{
 		int y = 1;
 		int x = 0;
 		Random random = new Random();
-		int nbr = random.nextInt(2);
+		int nbr = 1 + random.nextInt(3 - 1);
 		String result = "";
 		while (y <= s1.length()) {
 			tab[i] = s1.substring(x, y);
@@ -68,7 +68,7 @@ public class MasterMind extends Jeu{
 					nbr = nbr + 1;
 					tab[j] = "" + nbr;
 				} if (tab[j].equals("" + 9)) {
-					nbr = nbr - 2;
+					nbr = nbr - 1;
 					tab[j] = "" + nbr;
 				} if (tab[j].equals("" + 8)) {
 					nbr = nbr - 1;

@@ -3,6 +3,7 @@ package fr.projet3.oc;
 import java.io.*;
 import java.nio.file.*;
 
+
 public class Configurations {
 
 	private int valeurMin;
@@ -201,7 +202,6 @@ public class Configurations {
 		int j = 1;
 		int comp = 0;
 		String valS = "" + val;
-		System.out.println(valS);
 		String tab[] = new String[valS.length()];
 		String resS = "";
 		int resi;
@@ -252,7 +252,7 @@ public class Configurations {
 		String[] tab2 = tab[1].split(": ");
 		String[] tab3 = tab[2].split(": ");
 		String[] tab4 = tab[3].split(": ");
-
+		
 		setnombreDeChiffre(Integer.parseInt(tab1[1]));
 		setNombreEssaieAutorisé(Integer.parseInt(tab2[1]));
 		setNombreDeChiffreUtilisables(Integer.parseInt(tab3[1]));
