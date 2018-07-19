@@ -253,10 +253,30 @@ public class Configurations {
 		String[] tab3 = tab[2].split(": ");
 		String[] tab4 = tab[3].split(": ");
 		
-		setnombreDeChiffre(Integer.parseInt(tab1[1]));
-		setNombreEssaieAutorisé(Integer.parseInt(tab2[1]));
-		setNombreDeChiffreUtilisables(Integer.parseInt(tab3[1]));
-
+		String tableauDetableau [][] = new String[4][2];
+		tableauDetableau[0] = tab1;
+		tableauDetableau[1] = tab2;
+		tableauDetableau[2] = tab3;
+		tableauDetableau[3] = tab4;
+		
+		for(int ln = 0; ln < 4; ln++) {
+			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeCaseDeCombinaisonSecrete ")) {
+				setnombreDeChiffre(Integer.parseInt(tableauDetableau[ln][1]));
+			}
+			
+			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDessaisAutorise ")) {
+				setNombreEssaieAutorisé(Integer.parseInt(tableauDetableau[ln][1]));
+			}
+			
+			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeChiffreUtilisables ")) {
+				setNombreDeChiffreUtilisables(Integer.parseInt(tableauDetableau[ln][1]));
+			}
+			
+			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.modeDeveloppeur ")) {
+				setModeDeveloppeur(tableauDetableau[ln][1]);
+			}
+		}
+		
 		switch (getNombreDeChiffre()) {
 		case 1:
 			setValeurMin(1);
@@ -296,12 +316,6 @@ public class Configurations {
 			break;
 		default:
 			break;
-		}
-
-		if (tab4[1].equalsIgnoreCase("oui")) {
-			setModeDeveloppeur("oui");
-		} else {
-			setModeDeveloppeur("non");
 		}
 
 	}

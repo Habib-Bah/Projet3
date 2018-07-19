@@ -7,4 +7,7 @@ public abstract class Jeu {
 	public abstract String donnerIndice(String s1, String s2);
 
 	public abstract boolean finDePartie(String s);
+	
+	//nbr essai du joueur 
+	int nbressai = 0;
 }

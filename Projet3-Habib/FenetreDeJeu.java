@@ -30,12 +30,11 @@ public class FenetreDeJeu {
 	JMenuBar bar;
 	Random random = new Random();
 	static int intervalle;
-	int nbr;
+	int nbressaiMax;
 	int nbressai = 0;
 	int NombreDeChiffes;
 	int valeurMin;
 	int valeurMax;
-	public static int randomValue;
 	private String mode;
 	String str;
 	String str2;
@@ -61,7 +60,7 @@ public class FenetreDeJeu {
 					setValeurMin(conf.getValeurMin());
 					setValeurMax(conf.getValeurMax());
 					NombreDeChiffes = conf.getNombreDeChiffre();
-					nbr = conf.getNombreEssaieAutorisé();
+					nbressaiMax = conf.getNombreEssaieAutorisé();
 					modeDeveloppeur = conf.getModeDeveloppeur();
 					intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
 					conf.setValeur(intervalle);
@@ -186,7 +185,7 @@ public class FenetreDeJeu {
 												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbr) {
+										if (nbressai >= nbressaiMax) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 											JOptionPane.showMessageDialog(null, "La solution est: " + str);
@@ -220,7 +219,7 @@ public class FenetreDeJeu {
 									break;
 								case "Recherche +/- : défenseur":
 
-									if (nbressai >= nbr) {
+									if (nbressai >= nbressaiMax) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -256,7 +255,7 @@ public class FenetreDeJeu {
 												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbr) {
+										if (nbressai >= nbressaiMax) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -327,7 +326,7 @@ public class FenetreDeJeu {
 												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbr) {
+										if (nbressai >= nbressaiMax) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -360,7 +359,7 @@ public class FenetreDeJeu {
 									break;
 								case "MasterMind : défenseur":
 
-									if (nbressai >= nbr) {
+									if (nbressai >= nbressaiMax) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -398,7 +397,7 @@ public class FenetreDeJeu {
 												+ NombreDeChiffes + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbr) {
+										if (nbressai >= nbressaiMax) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
