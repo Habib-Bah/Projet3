@@ -107,7 +107,8 @@ public class FenetreDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null,
-								" - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
+								" - Vous avez la main, donnez une proposition pour trouver la combinaison secrète."
+										+ "\n- La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -117,7 +118,8 @@ public class FenetreDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null,
-								"- Pour lancer la partie, vous devez entrer une la combinaison =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
+								"- Attendez la proposition de l'ordinateur puis donnez des indications après"
+										+ " \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -127,7 +129,8 @@ public class FenetreDeJeu {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JOptionPane.showMessageDialog(null,
-								"- Pour lancer la partie, vous devez entrer votre proposition =+-+ \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
+								"- A tour de role, donnez votre proposition puis attendre les indications."
+										+ " \n - La partie termine lorsque la combinaison sécrète a été trouvée ou lorsque le nombre d'essaie autorisé a été atteint.");
 
 					}
 				});
@@ -186,6 +189,7 @@ public class FenetreDeJeu {
 										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+											JOptionPane.showMessageDialog(null, "La solution est: " + str);
 
 											logger.info("Fin de partie");
 										}
@@ -202,7 +206,6 @@ public class FenetreDeJeu {
 												newMessageTextField.setText("");
 												chatTextArea.append("MOI:  " + message + "\n");
 												String str = String.valueOf(borne);
-												System.out.println(" " + str);
 												chatTextArea.append("Ordinateur: " + m + "\n");
 												nbressai++;
 
@@ -220,6 +223,8 @@ public class FenetreDeJeu {
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+
+										JOptionPane.showMessageDialog(null, "La solution est: " + label2.getText());
 
 										logger.info("Fin de partie");
 									} else {
@@ -255,6 +260,10 @@ public class FenetreDeJeu {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
+											JOptionPane.showMessageDialog(null,
+													"La solution etait : \n  - OridiCombianaison : " + str
+															+ "\n - PlayerCombinaison :" + label2.getText());
+
 											logger.info("Fin de partie");
 										}
 
@@ -267,7 +276,6 @@ public class FenetreDeJeu {
 											String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
 
 											String EndindiceP = jeu.donnerIndice(label2.getText(), str2);
-											System.out.println(" " + str2);
 
 											newMessageTextField.setText("");
 
@@ -323,6 +331,8 @@ public class FenetreDeJeu {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
+											JOptionPane.showMessageDialog(null, "La solution est: " + borne);
+
 											logger.info("Fin de partie");
 										} else {
 											newMessageTextField.setText("");
@@ -353,6 +363,8 @@ public class FenetreDeJeu {
 									if (nbressai >= nbr) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+
+										JOptionPane.showMessageDialog(null, "La solution est: " + label2.getText());
 
 										logger.info("Fin de partie");
 									} else {
@@ -389,6 +401,10 @@ public class FenetreDeJeu {
 										if (nbressai >= nbr) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
+
+											JOptionPane.showMessageDialog(null,
+													"La solution etait : \n  - OridiCombianaison : " + borne
+															+ "\n - PlayerCombinaison :" + label2.getText());
 											logger.info("Fin de partie");
 										} else {
 
