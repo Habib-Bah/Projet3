@@ -8,6 +8,4 @@ public abstract class Jeu {
 
 	public abstract boolean finDePartie(String s);
 	
-	//nbr essai du joueur 
-	int nbressai = 0;
 }

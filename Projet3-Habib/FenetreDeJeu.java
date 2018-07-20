@@ -33,12 +33,10 @@ public class FenetreDeJeu {
 	int nbressaiMax;
 	int nbressai = 0;
 	int NombreDeChiffes;
-	int valeurMin;
-	int valeurMax;
 	private String mode;
 	String str;
 	String str2;
-	boolean actifMode;
+	String actifMode;
 	String modeDeveloppeur;
 	int borne;
 	Configurations conf;
@@ -57,12 +55,10 @@ public class FenetreDeJeu {
 			public void run() {
 				try {
 					conf = new Configurations();
-					setValeurMin(conf.getValeurMin());
-					setValeurMax(conf.getValeurMax());
 					NombreDeChiffes = conf.getNombreDeChiffre();
 					nbressaiMax = conf.getNombreEssaieAutorisé();
 					modeDeveloppeur = conf.getModeDeveloppeur();
-					intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+					intervalle = conf.getCombinaison();
 					conf.setValeur(intervalle);
 					borne = conf.getValeurUtilisable(intervalle);
 				} catch (IOException e2) {
@@ -174,7 +170,7 @@ public class FenetreDeJeu {
 
 						try {
 
-							if (actifMode == false) {
+							if (actifMode == "R") {
 								jeu = new RecherchePM();
 								intervalle = borne;
 								switch (getMode()) {
@@ -311,7 +307,7 @@ public class FenetreDeJeu {
 								}
 							}
 
-							if (actifMode == true) {
+							if (actifMode == "M") {
 
 								jeu = new MasterMind();
 
@@ -448,7 +444,7 @@ public class FenetreDeJeu {
 								}
 							}
 						} catch (Exception e2) {
-							if (actifMode == false) {
+							if (actifMode == "R") {
 								if (message.length() > NombreDeChiffes || message.length() < NombreDeChiffes) {
 									System.out.println("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
@@ -480,7 +476,7 @@ public class FenetreDeJeu {
 					public void actionPerformed(ActionEvent e) {
 						chatTextArea.setText(" ");
 						nbressai = 0;
-						intervalle = getValeurMin() + random.nextInt(getValeurMax() - getValeurMin());
+						intervalle = conf.getCombinaison();
 						borne = conf.getValeurUtilisable(intervalle);
 						intervalle = borne;
 						if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
@@ -563,43 +559,4 @@ public class FenetreDeJeu {
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
-
-	/**
-	 * getter qui renvoie le nombre minimun de cases de la combinaison secrète
-	 * 
-	 * @return un int
-	 */
-	public int getValeurMin() {
-		return valeurMin;
-	}
-
-	/**
-	 * setter qui change le nombre minimun de cases de la combinaison secrète
-	 * 
-	 * @param la valeur minimale
-	 */
-
-	public void setValeurMin(int valeurMin) {
-		this.valeurMin = valeurMin;
-	}
-
-	/**
-	 * getter qui renvoie le nombre maximun de cases de la combinaison secrète
-	 * 
-	 * @return un int
-	 */
-	public int getValeurMax() {
-		return valeurMax;
-	}
-
-	/**
-	 * setter qui change le nombre maximale de cases de la combinaison secrète
-	 * 
-	 * @param la valeur maximale
-	 */
-
-	public void setValeurMax(int valeurMax) {
-		this.valeurMax = valeurMax;
-	}
-
 }

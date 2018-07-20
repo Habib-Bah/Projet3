@@ -34,7 +34,7 @@ public class Launcher {
 				recherche.setMode("Recherche +/- : challenger");
 				FenetreDeJeu modedj = new FenetreDeJeu(recherche.getMode(), new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : challenger");
-				modedj.actifMode = false;
+				modedj.actifMode = "R";
 
 			} else if (message.equals("2")) {
 				logger.info("Vous avez choisi le mode défenseur");
@@ -42,7 +42,7 @@ public class Launcher {
 				recherche.setMode("Recherche +/- : défenseur");
 				FenetreDeJeu modedj = new FenetreDeJeu("Recherche +/- : défenseur", new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : défenseur");
-				modedj.actifMode = false;
+				modedj.actifMode = "R";
 				modedj.toFind();
 			} else {
 				logger.info("Vous avez choisi le mode duel");
@@ -50,7 +50,7 @@ public class Launcher {
 				recherche.setMode("Recherche +/- : duel");
 				FenetreDeJeu modedj = new FenetreDeJeu("Recherche +/- : duel", new OutputStreamWriter(System.out));
 				modedj.setMode("Recherche +/- : duel");
-				modedj.actifMode = false;
+				modedj.actifMode = "R";
 				modedj.toFind();
 			}
 			break;
@@ -66,14 +66,14 @@ public class Launcher {
 				mastermind.setMode("MasterMind : challenger");
 				FenetreDeJeu modedj = new FenetreDeJeu("MasterMind : challenger", new OutputStreamWriter(System.out));
 				modedj.setMode("MasterMind  : challenger");
-				modedj.actifMode = true;
+				modedj.actifMode = "M";
 			} else if (mes.equals("2")) {
 				logger.info("Vous avez choisi le mode défenseur");
 				MasterMind mastermind = new MasterMind();
 				mastermind.setMode("MasterMind : défenseur");
 				FenetreDeJeu modedj = new FenetreDeJeu("MasterMind : défenseur", new OutputStreamWriter(System.out));
 				modedj.setMode("MasterMind : défenseur");
-				modedj.actifMode = true;
+				modedj.actifMode = "M";
 				modedj.toFind();
 			} else {
 				logger.info("Vous avez choisi le mode duel");
@@ -81,7 +81,7 @@ public class Launcher {
 				mastermind.setMode("MasterMind : duel");
 				FenetreDeJeu modedj = new FenetreDeJeu(mastermind.getMode(), new OutputStreamWriter(System.out));
 				modedj.setMode("MasterMind : duel");
-				modedj.actifMode = true;
+				modedj.actifMode = "M";
 				modedj.toFind();
 			}
 		default:

@@ -2,12 +2,11 @@ package fr.projet3.oc;
 
 import java.io.*;
 import java.nio.file.*;
-
+import java.util.Random;
 
 public class Configurations {
 
-	private int valeurMin;
-	private int valeurMax;
+	private int combinaison;
 	private int nombreDeChiffre;
 	private int nombreEssaieAutorisé;
 	private int nombreDeChiffreUtilisables;
@@ -20,50 +19,29 @@ public class Configurations {
 	}
 
 	/**
-	 * getter recupérant la valeur minimale donnée par l'utilisateur dans le fichier
-	 * de configuration
+	 * getter recupérant la combinaison de l'ordinateur
 	 * 
-	 * @return int valeurMin
+	 * @return int combinaison
 	 */
-	public int getValeurMin() {
-		return valeurMin;
+	public int getCombinaison() {
+		return combinaison;
 	}
 
 	/**
-	 * setter modifiant la valeur minimale donnée dans le fichier de configuration
+	 * setter modifiant la combinaison de l'ordinateur
 	 * 
-	 * @param le mode
-	 * 
-	 */
-	public void setValeurMin(int valeurMin) {
-		this.valeurMin = valeurMin;
-	}
-
-	/**
-	 * getter recupérant la valeur maximale donnée par l'utilisateur dans le fichier
-	 * de configuration
-	 * 
-	 * @return int valeurMax
-	 */
-	public int getValeurMax() {
-		return valeurMax;
-	}
-
-	/**
-	 * setter modifiant la valeur maximale donnée dans le fichier de configuration
-	 * 
-	 * @param le mode
+	 * @param la combinaison
 	 * 
 	 */
-	public void setValeurMax(int valeurMax) {
-		this.valeurMax = valeurMax;
+	public void setCombinaison(int combinaison) {
+		this.combinaison = combinaison;
 	}
 
 	/**
 	 * getter recupérant le nombre de chiffres utilisabes donné par l'utilisateur
 	 * dans le fichier de configuration
 	 * 
-	 * @return int valeurMax
+	 * @return int nombreDeChiffre
 	 */
 
 	public int getNombreDeChiffre() {
@@ -252,71 +230,43 @@ public class Configurations {
 		String[] tab2 = tab[1].split(": ");
 		String[] tab3 = tab[2].split(": ");
 		String[] tab4 = tab[3].split(": ");
-		
-		String tableauDetableau [][] = new String[4][2];
+
+		String tableauDetableau[][] = new String[4][2];
 		tableauDetableau[0] = tab1;
 		tableauDetableau[1] = tab2;
 		tableauDetableau[2] = tab3;
 		tableauDetableau[3] = tab4;
-		
-		for(int ln = 0; ln < 4; ln++) {
-			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeCaseDeCombinaisonSecrete ")) {
+
+		for (int ln = 0; ln < 4; ln++) {
+			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeCaseDeCombinaisonSecrete ")) {
 				setnombreDeChiffre(Integer.parseInt(tableauDetableau[ln][1]));
 			}
-			
-			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDessaisAutorise ")) {
+
+			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDessaisAutorise ")) {
 				setNombreEssaieAutorisé(Integer.parseInt(tableauDetableau[ln][1]));
 			}
-			
-			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeChiffreUtilisables ")) {
+
+			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeChiffreUtilisables ")) {
 				setNombreDeChiffreUtilisables(Integer.parseInt(tableauDetableau[ln][1]));
 			}
-			
-			if((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.modeDeveloppeur ")) {
+
+			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.modeDeveloppeur ")) {
 				setModeDeveloppeur(tableauDetableau[ln][1]);
 			}
 		}
-		
-		switch (getNombreDeChiffre()) {
-		case 1:
-			setValeurMin(1);
-			setValeurMax(9);
-			break;
-		case 2:
-			setValeurMin(10);
-			setValeurMax(99);
-			break;
-		case 3:
-			setValeurMin(100);
-			setValeurMax(999);
-			break;
-		case 4:
-			setValeurMin(1000);
-			setValeurMax(9999);
-			break;
-		case 5:
-			setValeurMin(10000);
-			setValeurMax(99999);
-			break;
-		case 6:
-			setValeurMin(100000);
-			setValeurMax(999999);
-			break;
-		case 7:
-			setValeurMin(1000000);
-			setValeurMax(9999999);
-			break;
-		case 8:
-			setValeurMin(10000000);
-			setValeurMax(99999999);
-			break;
-		case 9:
-			setValeurMin(1100000000);
-			setValeurMax(99999999);
-			break;
-		default:
-			break;
+
+		Random random = new Random();
+		int number = random.nextInt((int) (Math.pow(10, getNombreDeChiffre()) - 1));
+		String numberInString = Integer.toString(number);
+
+		int diff = getNombreDeChiffre() - numberInString.length();
+		if (diff != 0) {
+			for (int w = 0; w <= diff; w++) {
+				numberInString = "0" + numberInString;
+			}
 		}
+
+		setCombinaison(Integer.parseInt(numberInString));
 
 	}
 
