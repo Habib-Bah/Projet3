@@ -7,16 +7,8 @@ public class MasterMind extends Jeu {
 
 	String title;
 	private String Mode;
-	boolean actif = false;
 	Configurations conf;
-
-	/**
-	 * Constructeur de la classe
-	 * 
-	 */
-	public MasterMind() {
-		this.actif = true;
-	}
+	private int nombreEssaiEffectuer = 0;
 
 	/**
 	 * getter recupérant le mode du jeu au quel on joue
@@ -49,7 +41,7 @@ public class MasterMind extends Jeu {
 	 * 
 	 *
 	 */
-	
+
 	public String joue(String s1, String s2) {
 		try {
 			conf = new Configurations();
@@ -57,17 +49,17 @@ public class MasterMind extends Jeu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String valeur ="";
+		String valeur = "";
 		if (!s2.equalsIgnoreCase("4 présents, 4 bien placés")) {
 			Random r = new Random();
 			int valeurMax = conf.getNombreDeChiffre();
 			Set<Integer> monHashSet = new HashSet<>();
 			while (monHashSet.size() < 10000)
-			    monHashSet.add(r.nextInt(500000));
+				monHashSet.add(r.nextInt(500000));
 			for (int elt : monHashSet) {
 				String slt = Integer.toString(elt);
-				if(slt.length() == valeurMax) {		
-					valeur = slt; 
+				if (slt.length() == valeurMax) {
+					valeur = slt;
 					break;
 				}
 			}
@@ -88,29 +80,115 @@ public class MasterMind extends Jeu {
 	 */
 
 	public String donnerIndice(String s1, String s2) {
-		int nbrexistant = 0;
 		int nbrebienplacé = 0;
 		String resultat = "";
-		int x = 0;
-		int y = 1;
+		int nombrePresent = 0;
+
+		int tab[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		int tab2[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 		int i = 0;
+		int j = 1;
+		int k = 0;
+		int l = 1;
 
-		String tab1[] = new String[s1.length()];
-		String tab2[] = new String[s2.length()];
+		for (int cmp = 0; cmp < s1.length(); cmp++) {
 
-		while (y <= s1.length()) {
-			tab1[i] = s1.substring(x, y);
-			tab2[i] = s2.substring(x, y);
-			x++;
-			y++;
+			switch (s1.substring(i, j)) {
+
+			case "0":
+				tab[0] = tab[0] + 1;
+				break;
+			case "1":
+				tab[1] = tab[1] + 1;
+				break;
+			case "2":
+				tab[2] = tab[2] + 1;
+				break;
+			case "3":
+				tab[3] = tab[3] + 1;
+				break;
+			case "4":
+				tab[4] = tab[4] + 1;
+				break;
+			case "5":
+				tab[5] = tab[5] + 1;
+				break;
+			case "6":
+				tab[6] = tab[6] + 1;
+				break;
+			case "7":
+				tab[7] = tab[7] + 1;
+				break;
+			case "8":
+				tab[8] = tab[8] + 1;
+				break;
+			case "9":
+				tab[9] = tab[9] + 1;
+				break;
+			default:
+				break;
+			}
 			i++;
+			j++;
 		}
 
-		for (int l = 0; l < tab1.length; l++) {
-			for (int k = 0; k < tab2.length; k++) {
-				if (tab1[l].equalsIgnoreCase(tab2[k])) {
-					nbrexistant++;
-					if (l == k) {
+		for (int cm = 0; cm < s2.length(); cm++) {
+
+			switch (s2.substring(k, l)) {
+
+			case "0":
+				tab2[0] = tab2[0] + 1;
+				break;
+			case "1":
+				tab2[1] = tab2[1] + 1;
+				break;
+			case "2":
+				tab2[2] = tab2[2] + 1;
+				break;
+			case "3":
+				tab2[3] = tab2[3] + 1;
+				break;
+			case "4":
+				tab2[4] = tab2[4] + 1;
+				break;
+			case "5":
+				tab2[5] = tab2[5] + 1;
+				break;
+			case "6":
+				tab2[6] = tab2[6] + 1;
+				break;
+			case "7":
+				tab2[7] = tab2[7] + 1;
+				break;
+			case "8":
+				tab2[8] = tab2[8] + 1;
+				break;
+			case "9":
+				tab2[9] = tab2[9] + 1;
+				break;
+			default:
+				break;
+			}
+			k++;
+			l++;
+		}
+
+		for (int cmt = 0; cmt < tab.length; cmt++) {
+			if (tab[cmt] != 0 && tab2[cmt] != 0) {
+				if (tab[cmt] > tab2[cmt]) {
+					nombrePresent = nombrePresent + tab2[cmt];
+				}
+				if (tab[cmt] <= tab2[cmt]) {
+					nombrePresent = nombrePresent + tab[cmt];
+				}
+			}
+		}
+
+		for (int x = 0; x < tab.length; x++) {
+			for (int y = 0; y < tab2.length; y++) {
+				if (tab2[x] == (tab2[y])) {
+					if (x == y) {
 						nbrebienplacé++;
 					}
 
@@ -119,7 +197,7 @@ public class MasterMind extends Jeu {
 
 		}
 
-		switch (nbrexistant) {
+		switch (nombrePresent) {
 		case 0:
 			resultat = ("Aucun chiffre n'est présent");
 			break;
@@ -183,6 +261,14 @@ public class MasterMind extends Jeu {
 			return true;
 		} else
 			return false;
+	}
+
+	public int getNombreEssaiEffectuer() {
+		return nombreEssaiEffectuer;
+	}
+
+	public void setNombreEssaiEffectuer(int nombreEssaiEffectuer) {
+		this.nombreEssaiEffectuer = nombreEssaiEffectuer;
 	}
 
 }

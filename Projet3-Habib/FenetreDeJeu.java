@@ -29,16 +29,12 @@ public class FenetreDeJeu {
 	JScrollPane chatscrollPane;
 	JMenuBar bar;
 	Random random = new Random();
-	static int intervalle;
-	int nbressaiMax;
+	int CombinaisonATrouver;
 	int nbressai = 0;
-	int NombreDeChiffes;
 	private String mode;
 	String str;
 	String str2;
 	String actifMode;
-	String modeDeveloppeur;
-	int borne;
 	Configurations conf;
 	Jeu jeu;
 
@@ -53,26 +49,21 @@ public class FenetreDeJeu {
 
 			@Override
 			public void run() {
+
 				try {
 					conf = new Configurations();
-					NombreDeChiffes = conf.getNombreDeChiffre();
-					nbressaiMax = conf.getNombreEssaieAutorisé();
-					modeDeveloppeur = conf.getModeDeveloppeur();
-					intervalle = conf.getCombinaison();
-					conf.setValeur(intervalle);
-					borne = conf.getValeurUtilisable(intervalle);
-				} catch (IOException e2) {
-					e2.printStackTrace();
+				} catch (IOException e3) {
+					e3.printStackTrace();
 				}
-
 				Logger logger = Logger.getLogger(Launcher.class);
-				if (modeDeveloppeur.equalsIgnoreCase("oui")) {
+				if (conf.getModeDeveloppeur().equalsIgnoreCase("oui")) {
 					if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
 							|| getMode().equalsIgnoreCase("Recherche +/- : duel")) {
-						label3 = new JLabel(" OrdiCombianison:" + intervalle + " ");
+						label3 = new JLabel(" OrdiCombianison:" + conf.getCombinaison() + " ");
 					} else if (getMode().equalsIgnoreCase("MasterMind  : challenger")
 							|| getMode().equalsIgnoreCase("MasterMind : duel")) {
-						label3 = new JLabel(" OrdiCombianison:" + borne + " ");
+						label3 = new JLabel(
+								" OrdiCombianison:" + conf.getValeurUtilisable(conf.getCombinaison()) + " ");
 					}
 
 					else {
@@ -83,8 +74,8 @@ public class FenetreDeJeu {
 					label3 = new JLabel("OrdiCombianison : ????  ");
 				}
 
-				str = String.valueOf(intervalle);
-				str2 = String.valueOf(intervalle);
+				str = String.valueOf(conf.getCombinaison());
+				str2 = String.valueOf(conf.getCombinaison());
 
 				frame = new JFrame(titre);
 				frame.setLayout(new BorderLayout());
@@ -172,16 +163,16 @@ public class FenetreDeJeu {
 
 							if (actifMode == "R") {
 								jeu = new RecherchePM();
-								intervalle = borne;
-								switch (getMode()) {
+								CombinaisonATrouver = conf.getValeurUtilisable(conf.getCombinaison());
+								switch (jeu.getMode()) {
 								case "Recherche +/- : challenger":
-									if (message.length() < NombreDeChiffes) {
+									if (message.length() < conf.getNombreDeChiffre()) {
 										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-												+ NombreDeChiffes + "\n");
+												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbressaiMax) {
+										if (nbressai >= conf.getNombreEssaieAutorisé()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 											JOptionPane.showMessageDialog(null, "La solution est: " + str);
@@ -200,7 +191,7 @@ public class FenetreDeJeu {
 
 												newMessageTextField.setText("");
 												chatTextArea.append("MOI:  " + message + "\n");
-												String str = String.valueOf(borne);
+												String str = String.valueOf(conf.genererCombinaison());
 												chatTextArea.append("Ordinateur: " + m + "\n");
 												nbressai++;
 
@@ -215,7 +206,7 @@ public class FenetreDeJeu {
 									break;
 								case "Recherche +/- : défenseur":
 
-									if (nbressai >= nbressaiMax) {
+									if (nbressai >= conf.getNombreEssaieAutorisé()) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -245,13 +236,13 @@ public class FenetreDeJeu {
 									break;
 								case "Recherche +/- : duel":
 
-									if (message.length() < NombreDeChiffes) {
+									if (message.length() < conf.getNombreDeChiffre()) {
 										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-												+ NombreDeChiffes + "\n");
+												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbressaiMax) {
+										if (nbressai >= conf.getNombreEssaieAutorisé()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -311,28 +302,30 @@ public class FenetreDeJeu {
 
 								jeu = new MasterMind();
 
-								switch (getMode()) {
+								switch (jeu.getMode()) {
 
 								case "MasterMind  : challenger":
 
-									intervalle = borne;
-									if (message.length() < NombreDeChiffes || message.length() > NombreDeChiffes) {
+									CombinaisonATrouver = conf.getValeurUtilisable(conf.getCombinaison());
+									if (message.length() < conf.getNombreDeChiffre()
+											|| message.length() > conf.getNombreDeChiffre()) {
 										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-												+ NombreDeChiffes + "\n");
+												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbressaiMax) {
+										if (nbressai >= conf.getNombreEssaieAutorisé()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
-											JOptionPane.showMessageDialog(null, "La solution est: " + borne);
+											JOptionPane.showMessageDialog(null, "La solution est: "
+													+ conf.getValeurUtilisable(conf.getCombinaison()));
 
 											logger.info("Fin de partie");
 										} else {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI:  " + message + "\n");
-											String str = String.valueOf(intervalle);
+											String str = String.valueOf(CombinaisonATrouver);
 											String m = jeu.donnerIndice(str, message);
 											if (m.equalsIgnoreCase("4 présents, 4 bien placés")) {
 												JOptionPane.showMessageDialog(null,
@@ -355,7 +348,7 @@ public class FenetreDeJeu {
 									break;
 								case "MasterMind : défenseur":
 
-									if (nbressai >= nbressaiMax) {
+									if (nbressai >= conf.getNombreEssaieAutorisé()) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -387,18 +380,20 @@ public class FenetreDeJeu {
 
 								case "MasterMind : duel":
 
-									if (message.length() < NombreDeChiffes || message.length() > NombreDeChiffes) {
+									if (message.length() < conf.getNombreDeChiffre()
+											|| message.length() > conf.getNombreDeChiffre()) {
 										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-												+ NombreDeChiffes + "\n");
+												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (nbressai >= nbressaiMax) {
+										if (nbressai >= conf.getNombreEssaieAutorisé()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											JOptionPane.showMessageDialog(null,
-													"La solution etait : \n  - OridiCombianaison : " + borne
+													"La solution etait : \n  - OridiCombianaison : "
+															+ conf.getValeurUtilisable(conf.getCombinaison())
 															+ "\n - PlayerCombinaison :" + label2.getText());
 											logger.info("Fin de partie");
 										} else {
@@ -445,24 +440,26 @@ public class FenetreDeJeu {
 							}
 						} catch (Exception e2) {
 							if (actifMode == "R") {
-								if (message.length() > NombreDeChiffes || message.length() < NombreDeChiffes) {
+								if (message.length() > conf.getNombreDeChiffre()
+										|| message.length() < conf.getNombreDeChiffre()) {
 									System.out.println("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-											+ NombreDeChiffes + "\n");
+											+ conf.getNombreDeChiffre() + "\n");
 									chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-											+ NombreDeChiffes + "\n");
+											+ conf.getNombreDeChiffre() + "\n");
 									newMessageTextField.setText("");
 								}
 
 							} else {
-								if (str.length() > NombreDeChiffes || str.length() < NombreDeChiffes) {
+								if (str.length() > conf.getNombreDeChiffre()
+										|| str.length() < conf.getNombreDeChiffre()) {
 									System.out.println("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-											+ NombreDeChiffes + "\n");
+											+ conf.getNombreDeChiffre() + "\n");
 									chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
-											+ NombreDeChiffes + "\n");
+											+ conf.getNombreDeChiffre() + "\n");
 									newMessageTextField.setText("");
 								}
 							}
@@ -476,18 +473,21 @@ public class FenetreDeJeu {
 					public void actionPerformed(ActionEvent e) {
 						chatTextArea.setText(" ");
 						nbressai = 0;
-						intervalle = conf.genererCombinaison();
-						borne = conf.getValeurUtilisable(intervalle);
-						intervalle = borne;
+						/*
+						 * CombinaisonATrouver = conf.genererCombinaison(); borne =
+						 * conf.getValeurUtilisable(CombinaisonATrouver);
+						 */
+						CombinaisonATrouver = conf.getValeurUtilisable(CombinaisonATrouver);
+						;
 
 						if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
 								|| getMode().equalsIgnoreCase("MasterMind  : challenger")) {
-							label3.setText("CombinaisonOrdi :" + intervalle + " ");
+							label3.setText("CombinaisonOrdi :" + CombinaisonATrouver + " ");
 						}
 
 						if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
 								|| getMode().equalsIgnoreCase("MasterMind : défenseur")) {
-							chatTextArea.setText("Ordinateur: " + intervalle + "\n");
+							chatTextArea.setText("Ordinateur: " + CombinaisonATrouver + "\n");
 							nbressai++;
 							logger.info("Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
 							logger.info("essais " + nbressai);
@@ -495,7 +495,7 @@ public class FenetreDeJeu {
 
 						if (getMode().equalsIgnoreCase("Recherche +/- : duel")
 								|| getMode().equalsIgnoreCase("MasterMind : duel")) {
-							label3.setText("CombinaisonOrdi :" + intervalle + " ");
+							label3.setText("CombinaisonOrdi :" + CombinaisonATrouver + " ");
 						}
 
 					}
@@ -539,16 +539,16 @@ public class FenetreDeJeu {
 	public void toFind() {
 
 		String message = JOptionPane.showInputDialog(null, "Entrez la combinason secrète");
-		while (message.length() > NombreDeChiffes || message.length() < NombreDeChiffes) {
+		while (message.length() > conf.getNombreDeChiffre() || message.length() < conf.getNombreDeChiffre()) {
 			message = JOptionPane.showInputDialog(null, "Un chiffre d'une longueur de " + message.length()
-					+ " a été saisi. Veuillez en saisir un d'une longueur de " + NombreDeChiffes);
+					+ " a été saisi. Veuillez en saisir un d'une longueur de " + conf.getNombreDeChiffre());
 		}
 		label2.setText("" + message);
 
 	}
 
 	public void modeDeveloppeur() {
-		label3.setText("CombinaisonO : " + intervalle);
+		label3.setText("CombinaisonO : " + CombinaisonATrouver);
 	}
 
 	/**

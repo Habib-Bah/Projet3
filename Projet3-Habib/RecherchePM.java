@@ -4,16 +4,7 @@ public class RecherchePM extends Jeu {
 
 	String title;
 	private String Mode;
-	boolean actif = false;
-
-	/**
-	 * Constructeur de la classe
-	 * 
-	 */
-	public RecherchePM() {
-
-		this.actif = true;
-	}
+	private int nombreEssaiEffectuer = 0;
 
 	/**
 	 * getter recupérant le mode du jeu au quel on joue
@@ -201,5 +192,15 @@ public class RecherchePM extends Jeu {
 			return false;
 		}
 	}
+
+	public int getNombreEssaiEffectuer() {
+		return nombreEssaiEffectuer;
+	}
+
+	public void setNombreEssaiEffectuer(int nombreEssaiEffectuer) {
+		this.nombreEssaiEffectuer = nombreEssaiEffectuer;
+	}
+	
+	
 
 }
