@@ -476,15 +476,26 @@ public class FenetreDeJeu {
 					public void actionPerformed(ActionEvent e) {
 						chatTextArea.setText(" ");
 						nbressai = 0;
-						intervalle = conf.getCombinaison();
+						intervalle = conf.genererCombinaison();
 						borne = conf.getValeurUtilisable(intervalle);
 						intervalle = borne;
+
+						if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
+								|| getMode().equalsIgnoreCase("MasterMind  : challenger")) {
+							label3.setText("CombinaisonOrdi :" + intervalle + " ");
+						}
+
 						if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
 								|| getMode().equalsIgnoreCase("MasterMind : défenseur")) {
-							chatTextArea.setText("Ordinateur: " + str + "\n");
+							chatTextArea.setText("Ordinateur: " + intervalle + "\n");
 							nbressai++;
 							logger.info("Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
 							logger.info("essais " + nbressai);
+						}
+
+						if (getMode().equalsIgnoreCase("Recherche +/- : duel")
+								|| getMode().equalsIgnoreCase("MasterMind : duel")) {
+							label3.setText("CombinaisonOrdi :" + intervalle + " ");
 						}
 
 					}

@@ -1,12 +1,14 @@
 package fr.projet3.oc;
 
+import java.io.IOException;
 import java.util.*;
 
-public class MasterMind extends Jeu{
+public class MasterMind extends Jeu {
 
 	String title;
 	private String Mode;
 	boolean actif = false;
+	Configurations conf;
 
 	/**
 	 * Constructeur de la classe
@@ -47,42 +49,30 @@ public class MasterMind extends Jeu{
 	 * 
 	 *
 	 */
+	
 	public String joue(String s1, String s2) {
-		String tab[] = new String[s1.length()];
-		int i = 0;
-		int y = 1;
-		int x = 0;
-		Random random = new Random();
-		int nbr = 1 + random.nextInt(3 - 1);
-		String result = "";
-		while (y <= s1.length()) {
-			tab[i] = s1.substring(x, y);
-			x++;
-			y++;
-			i++;
+		try {
+			conf = new Configurations();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		String valeur ="";
 		if (!s2.equalsIgnoreCase("4 présents, 4 bien placés")) {
-
-			for (int j = 0; j < tab.length; j++) {
-				if (tab[j].equals("" + 0)) {
-					nbr = nbr + 1;
-					tab[j] = "" + nbr;
-				} if (tab[j].equals("" + 9)) {
-					nbr = nbr - 1;
-					tab[j] = "" + nbr;
-				} if (tab[j].equals("" + 8)) {
-					nbr = nbr - 1;
-					tab[j] = "" + nbr;
-				} else
-					tab[j] = "" + nbr;
+			Random r = new Random();
+			int valeurMax = conf.getNombreDeChiffre();
+			Set<Integer> monHashSet = new HashSet<>();
+			while (monHashSet.size() < 10000)
+			    monHashSet.add(r.nextInt(500000));
+			for (int elt : monHashSet) {
+				String slt = Integer.toString(elt);
+				if(slt.length() == valeurMax) {		
+					valeur = slt; 
+					break;
+				}
 			}
 		}
-
-		for (int l = 0; l < tab.length; l++) {
-			result = result + tab[l];
-		}
-		return result;
-
+		return valeur;
 	}
 
 	/**
@@ -183,7 +173,7 @@ public class MasterMind extends Jeu{
 	/**
 	 * methode finDePartie qui nous indique la fin de la partie
 	 * 
-	 *  @param une chaine representant la reponse donnée
+	 * @param une chaine representant la reponse donnée
 	 * 
 	 * @return un booleen qui vaut true si la combianison a été trouvée et false si
 	 *         non

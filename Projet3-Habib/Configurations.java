@@ -2,7 +2,7 @@ package fr.projet3.oc;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.Random;
+import java.util.*;
 
 public class Configurations {
 
@@ -255,18 +255,24 @@ public class Configurations {
 			}
 		}
 
+		setCombinaison(genererCombinaison());
+
+	}
+
+	public int genererCombinaison() {
 		Random random = new Random();
 		int number = random.nextInt((int) (Math.pow(10, getNombreDeChiffre()) - 1));
 		String numberInString = Integer.toString(number);
 
 		int diff = getNombreDeChiffre() - numberInString.length();
 		if (diff != 0) {
-			for (int w = 0; w <= diff; w++) {
-				numberInString = "0" + numberInString;
+			for (int w = 0; w < diff; w++) {
+				numberInString = numberInString + "0";
 			}
 		}
 
 		setCombinaison(Integer.parseInt(numberInString));
+		return getCombinaison();
 
 	}
 
