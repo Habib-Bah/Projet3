@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Configurations {
 
-	private int combinaison;
+	private String combinaison;
 	private int nombreDeChiffre;
 	private int nombreEssaieAutorisé;
 	private int nombreDeChiffreUtilisables;
@@ -23,7 +23,7 @@ public class Configurations {
 	 * 
 	 * @return int combinaison
 	 */
-	public int getCombinaison() {
+	public String getCombinaison() {
 		return combinaison;
 	}
 
@@ -33,7 +33,7 @@ public class Configurations {
 	 * @param la combinaison
 	 * 
 	 */
-	public void setCombinaison(int combinaison) {
+	public void setCombinaison(String combinaison) {
 		this.combinaison = combinaison;
 	}
 
@@ -259,21 +259,21 @@ public class Configurations {
 
 	}
 
-	public int genererCombinaison() {
+	public String genererCombinaison() {
 		Random random = new Random();
 		int number = random.nextInt((int) (Math.pow(10, getNombreDeChiffre()) - 1));
 		String numberInString = Integer.toString(number);
 
-		int diff = getNombreDeChiffre() - numberInString.length();
+		int diff = (getNombreDeChiffre() - numberInString.length());
 		if (diff != 0) {
 			for (int w = 0; w < diff; w++) {
-				numberInString = numberInString + "0";
+				numberInString = "0" + String.valueOf(numberInString);
 			}
 		}
+		
+		setCombinaison(numberInString);
 
-		setCombinaison(Integer.parseInt(numberInString));
 		return getCombinaison();
-
 	}
 
 }

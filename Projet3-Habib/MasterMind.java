@@ -5,29 +5,7 @@ import java.util.*;
 
 public class MasterMind extends Jeu {
 
-	String title;
-	private String Mode;
 	Configurations conf;
-	private int nombreEssaiEffectuer = 0;
-
-	/**
-	 * getter recupérant le mode du jeu au quel on joue
-	 * 
-	 * @return String mode
-	 */
-	public String getMode() {
-		return Mode;
-	}
-
-	/**
-	 * setter modifiant le mode du jeu
-	 * 
-	 * @param le mode
-	 * 
-	 */
-	public void setMode(String mode) {
-		Mode = mode;
-	}
 
 	/**
 	 * methode jouer qui permet à un l'ordinateur je jouer un coup
@@ -46,7 +24,6 @@ public class MasterMind extends Jeu {
 		try {
 			conf = new Configurations();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String valeur = "";
@@ -86,6 +63,31 @@ public class MasterMind extends Jeu {
 
 		int tab[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		int tab2[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+		String tableau1[] = new String[s1.length()];
+		String tableau2[] = new String[s2.length()];
+		int longueur = 0;
+		int largeur = 1;
+		int compteur = 0;
+
+		while (largeur <= s1.length()) {
+			tableau1[compteur] = s1.substring(longueur, largeur);
+			tableau2[compteur] = s2.substring(longueur, largeur);
+			longueur++;
+			largeur++;
+			compteur++;
+		}
+
+		for (int x = 0; x < tableau1.length; x++) {
+			for (int y = 0; y < tableau2.length; y++) {
+				if (tableau1[x].equalsIgnoreCase(tableau2[y])) {
+					if (x == y) {
+						nbrebienplacé++;
+					}
+
+				}
+			}
+		}
 
 		int i = 0;
 		int j = 1;
@@ -185,18 +187,6 @@ public class MasterMind extends Jeu {
 			}
 		}
 
-		for (int x = 0; x < tab.length; x++) {
-			for (int y = 0; y < tab2.length; y++) {
-				if (tab2[x] == (tab2[y])) {
-					if (x == y) {
-						nbrebienplacé++;
-					}
-
-				}
-			}
-
-		}
-
 		switch (nombrePresent) {
 		case 0:
 			resultat = ("Aucun chiffre n'est présent");
@@ -261,14 +251,6 @@ public class MasterMind extends Jeu {
 			return true;
 		} else
 			return false;
-	}
-
-	public int getNombreEssaiEffectuer() {
-		return nombreEssaiEffectuer;
-	}
-
-	public void setNombreEssaiEffectuer(int nombreEssaiEffectuer) {
-		this.nombreEssaiEffectuer = nombreEssaiEffectuer;
 	}
 
 }
