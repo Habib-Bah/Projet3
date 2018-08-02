@@ -75,6 +75,8 @@ public class Launcher {
 				fenetre.toFind();
 			}
 		default:
+			mode = JOptionPane.showInputDialog(null,
+					"Mauvaise selection");
 			break;
 		}
 	}

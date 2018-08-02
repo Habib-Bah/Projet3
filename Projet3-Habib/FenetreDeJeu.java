@@ -180,7 +180,7 @@ public class FenetreDeJeu {
 
 										else {
 											String m = jeu.donnerIndice(str, message);
-											if (jeu.finDePartie(m) == true) {
+											if (message.equalsIgnoreCase(str)) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, vous avez trouvé la combianaison sécrète");
 
@@ -212,7 +212,7 @@ public class FenetreDeJeu {
 
 										logger.info("Fin de partie");
 									} else {
-										if (jeu.finDePartie(message) == true) {
+										if (str.equalsIgnoreCase(label2.getText())) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, votre combianaison sécrète a été trouvée");
 
@@ -263,13 +263,13 @@ public class FenetreDeJeu {
 
 											newMessageTextField.setText("");
 
-											if (jeu.finDePartie(indiceO) == true) {
+											if (message.equalsIgnoreCase(str)) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, vous avez trouvé la combianaison sécrète");
 
 												logger.info("Fin de partie");
 											}
-											if (jeu.finDePartie(EndindiceP) == true) {
+											if (str2.equalsIgnoreCase(label2.getText())) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, votre combianaison sécrète a été trouvée");
 
@@ -345,7 +345,8 @@ public class FenetreDeJeu {
 
 									break;
 								case "MasterMind : défenseur":
-									str = conf.genererCombinaison();
+									conf.genererCombinaison();
+									str = conf.getCombinaison();
 
 									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
 										JOptionPane.showMessageDialog(null,
@@ -365,7 +366,6 @@ public class FenetreDeJeu {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI: " + message + "\n");
 											chatTextArea.append("Ordinateur: " + str + "\n");
-											str = jeu.joue(str, message);
 											jeu.nombreEssaiEffectuer++;
 
 											logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
