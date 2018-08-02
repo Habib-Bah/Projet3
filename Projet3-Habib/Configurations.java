@@ -250,7 +250,7 @@ public class Configurations {
 				setNombreDeChiffreUtilisables(Integer.parseInt(tableauDetableau[ln][1]));
 			}
 
-			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.modeDeveloppeur ")) {
+			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.modeDeveloppeur(oui/non) ")) {
 				setModeDeveloppeur(tableauDetableau[ln][1]);
 			}
 		}

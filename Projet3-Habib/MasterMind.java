@@ -1,6 +1,5 @@
 package fr.projet3.oc;
 
-import java.io.IOException;
 import java.util.*;
 
 public class MasterMind extends Jeu {
@@ -21,13 +20,8 @@ public class MasterMind extends Jeu {
 	 */
 
 	public String joue(String s1, String s2) {
-		try {
-			conf = new Configurations();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
 		String valeur = "";
-		if (!s2.equalsIgnoreCase("4 présents, 4 bien placés")) {
 			Random r = new Random();
 			int valeurMax = conf.getNombreDeChiffre();
 			Set<Integer> monHashSet = new HashSet<>();
@@ -40,7 +34,6 @@ public class MasterMind extends Jeu {
 					break;
 				}
 			}
-		}
 		return valeur;
 	}
 
@@ -57,7 +50,7 @@ public class MasterMind extends Jeu {
 	 */
 
 	public String donnerIndice(String s1, String s2) {
-		int nbrebienplacé = 0;
+		int nbrebienplace = 0;
 		String resultat = "";
 		int nombrePresent = 0;
 
@@ -82,7 +75,7 @@ public class MasterMind extends Jeu {
 			for (int y = 0; y < tableau2.length; y++) {
 				if (tableau1[x].equalsIgnoreCase(tableau2[y])) {
 					if (x == y) {
-						nbrebienplacé++;
+						nbrebienplace++;
 					}
 
 				}
@@ -186,56 +179,24 @@ public class MasterMind extends Jeu {
 				}
 			}
 		}
-
-		switch (nombrePresent) {
-		case 0:
-			resultat = ("Aucun chiffre n'est présent");
-			break;
-		case 1:
-			if (nbrebienplacé == 0) {
-				resultat = ("1 présent");
-			} else {
-				resultat = ("1 présent, 1 bien placé");
-			}
-			break;
-		case 2:
-			if (nbrebienplacé == 0) {
-				resultat = ("2 présents");
-			} else if (nbrebienplacé == 1) {
-				resultat = ("2 présents, 1 bien placé");
-			} else {
-				resultat = ("2 présents, 2 bien placés");
-			}
-			break;
-		case 3:
-			if (nbrebienplacé == 0) {
-				resultat = ("3 présents");
-			} else if (nbrebienplacé == 1) {
-				resultat = ("3 présents, 1 bien placé");
-			} else if (nbrebienplacé == 2) {
-				resultat = ("3 présents, 2 bien placés");
-			} else {
-				resultat = ("3 présents, 3 bien placés");
-			}
-			break;
-		case 4:
-			if (nbrebienplacé == 0) {
-				resultat = ("4 présents");
-			} else if (nbrebienplacé == 1) {
-				resultat = ("4 présents, 1 bien placé");
-			} else if (nbrebienplacé == 2) {
-				resultat = ("4 présents, 2 bien placés");
-			} else if (nbrebienplacé == 3) {
-				resultat = ("4 présents, 3 bien placés");
-			} else {
-				resultat = ("4 présents, 4 bien placés");
-			}
-			break;
-		default:
-			break;
+		
+		if(nombrePresent != 0 && nbrebienplace !=0) {
+			resultat = (nombrePresent + " présent, " +nbrebienplace +" bien placé");
 		}
-		return resultat;
+		
+		if(nombrePresent != 0 && nbrebienplace ==0) {
+			resultat = (nombrePresent + " présent");
+		}
+		
+		if(nombrePresent == 0 && nbrebienplace !=0) {
+			resultat = (nbrebienplace + " bien placé");
+		}
+		
+		if(nombrePresent == 0 && nbrebienplace ==0) {
+			resultat = (nombrePresent + " présent," +nbrebienplace +" bien placé");
+		}
 
+		return resultat;
 	}
 
 	/**
@@ -247,7 +208,7 @@ public class MasterMind extends Jeu {
 	 *         non
 	 */
 	public boolean finDePartie(String s) {
-		if (s.equalsIgnoreCase("4 présents, 4 bien placés")) {
+		if (s.equalsIgnoreCase(conf.getNombreDeChiffre() + " présent, " +  conf.getNombreDeChiffre() + " bien placé")) {
 			return true;
 		} else
 			return false;
