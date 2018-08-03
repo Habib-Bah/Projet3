@@ -31,100 +31,57 @@ public class RecherchePM extends Jeu {
 	 *            deuxième etant la combianison à trouvé
 	 * 
 	 * @return une nouvelle proposition pour l'ordinatur en fonction de la
-	 *         condinaison du joueur
+	 *         conbinaison du joueur
 	 * 
 	 *
 	 */
 	public String joue(String myS1, String myS2) {
-		String res = "";
-		int i = 0;
-		int j = 1;
-		while (j <= myS2.length()) {
-			if (myS1.substring(i, j).equalsIgnoreCase("-")) {
-				String g = myS2.substring(i, j);
-				switch (g) {
-				case "0":
-					res = res + "0";
-				case "1":
-					res = res + "0";
-					break;
-				case "2":
-					res = res + "1";
-					break;
-				case "3":
-					res = res + "2";
-					break;
-				case "4":
-					res = res + "3";
-					break;
-				case "5":
-					res = res + "4";
-					break;
-				case "6":
-					res = res + "5";
-					break;
-				case "7":
-					res = res + "6";
-					break;
-				case "8":
-					res = res + "7";
-					break;
-				case "9":
-					res = res + "8";
-					break;
-				default:
-					break;
-				}
-
-				i++;
-				j++;
-			} else if (myS1.substring(i, j).equalsIgnoreCase("+")) {
-
-				String g = myS2.substring(i, j);
-				switch (g) {
-				case "0":
-					res = res + "1";
-				case "1":
-					res = res + "2";
-					break;
-				case "2":
-					res = res + "3";
-					break;
-				case "3":
-					res = res + "4";
-					break;
-				case "4":
-					res = res + "5";
-					break;
-				case "5":
-					res = res + "6";
-					break;
-				case "6":
-					res = res + "7";
-					break;
-				case "7":
-					res = res + "8";
-					break;
-				case "8":
-					res = res + "9";
-					break;
-				case "9":
-					res = res + "9";
-					break;
-				default:
-					break;
-				}
-
-				i++;
-				j++;
-			} else {
-
-				res = res + myS2.substring(i, j);
-				i++;
-				j++;
-			}
+		
+		String tableau1[] = new String[myS1.length()];
+		String tableau2[] = new String[myS1.length()];
+		String resultat = "";
+		String Indication = myS1;
+		String proposition = myS2;
+		int x = 0;
+		int y = 1;
+		int z = 0;
+		
+		while(y <= tableau1.length) {
+			tableau1[z] = (proposition.substring(x, y));
+			tableau2[z] = (Indication.substring(x, y));
+			y++;
+			x++;
+			z++;
 		}
-		return res;
+		
+		for(int i = 0; i < tableau1.length; i++) {
+			if(tableau2[i].equalsIgnoreCase("+")) {
+				int val = Integer.parseInt(tableau1[i]);
+				if(val != 9) {
+					val = val + 1;
+					resultat = resultat + val;
+				}
+				else {
+					resultat = resultat + val;
+				}		 
+			}
+			if(tableau2[i].equalsIgnoreCase("-")) {
+				int val = Integer.parseInt(tableau1[i]);
+				if(val != 0) {
+					val = val - 1;
+					resultat = resultat + val;
+				}
+				else {
+					resultat = resultat + val;
+				}		 
+			}
+			if(tableau2[i].equalsIgnoreCase("=")) {
+				resultat = resultat + tableau1[i];
+			}
+			
+		}
+		
+		return resultat;
 
 	}
 
