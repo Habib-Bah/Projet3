@@ -3,7 +3,6 @@ package fr.projet3.oc;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.*;
 
 import javax.swing.*;
 
@@ -27,10 +26,15 @@ public class FenetreDeJeu {
 	JTextArea chatTextArea;
 	JScrollPane chatscrollPane;
 	JMenuBar bar;
-	Random random = new Random();
+	// Variable qui indique le mode au quel on joue sur la fenetre (Challengeur,
+	// defenseur ou duel)
 	private String mode;
-	String str;
-	String str2;
+	// Les deux variables servent à stocker les valeurs qui serons traités dans le
+	// mode duel pour le joueur et l'ordinateur
+	String variableIntermediaire;
+	String variableIntermediare2;
+	// Variable qui nous indique le mode actif sur la fenetre(R pour Recherche +/-
+	// et M pour MasterMind)
 	String actifMode;
 	Configurations conf;
 	Jeu jeu;
@@ -53,27 +57,27 @@ public class FenetreDeJeu {
 				} catch (IOException e3) {
 					e3.printStackTrace();
 				}
-				
+
 				conf.genererCombinaison();
-				str = conf.getCombinaison();
-				str2 = conf.getCombinaison();
+				variableIntermediaire = conf.getCombinaison();
+				variableIntermediare2 = conf.getCombinaison();
 				Logger logger = Logger.getLogger(Launcher.class);
 				if (conf.getModeDeveloppeur().equalsIgnoreCase("oui")) {
 					if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
 							|| getMode().equalsIgnoreCase("Recherche +/- : duel")) {
-						label3 = new JLabel(" OrdiCombianison:" + str + " ");
+						label3 = new JLabel(" CombinaisonOrdi:" + variableIntermediaire + " ");
 					} else if (getMode().equalsIgnoreCase("MasterMind  : challenger")
 							|| getMode().equalsIgnoreCase("MasterMind : duel")) {
-						label3 = new JLabel(" OrdiCombianison:"
+						label3 = new JLabel(" CombinaisonOrdi:"
 								+ conf.getValeurUtilisable(Integer.parseInt(conf.getCombinaison())) + " ");
 					}
 
 					else {
-						label3 = new JLabel("OrdiCombianison : ????  ");
+						label3 = new JLabel("CombinaisonOrdi : ????  ");
 					}
 
 				} else {
-					label3 = new JLabel("OrdiCombianison : ????  ");
+					label3 = new JLabel("CombinaisonOrdi : ????  ");
 				}
 
 				frame = new JFrame(titre);
@@ -132,7 +136,7 @@ public class FenetreDeJeu {
 				select.add(instructions);
 				select.add(rejouer);
 
-				label1 = new JLabel(" PlayerCombinaison:");
+				label1 = new JLabel(" CombinaisonJoueur:");
 				label2 = new JLabel("  :" + "????");
 
 				bar = new JMenuBar();
@@ -173,14 +177,15 @@ public class FenetreDeJeu {
 										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
-											JOptionPane.showMessageDialog(null, "La solution est: " + str);
+											JOptionPane.showMessageDialog(null,
+													"La solution est: " + variableIntermediaire);
 
 											logger.info("Fin de partie");
 										}
 
 										else {
-											String m = jeu.donnerIndice(str, message);
-											if (message.equalsIgnoreCase(str)) {
+											String m = jeu.donnerIndice(variableIntermediaire, message);
+											if (message.equalsIgnoreCase(variableIntermediaire)) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, vous avez trouvé la combianaison sécrète");
 
@@ -212,7 +217,7 @@ public class FenetreDeJeu {
 
 										logger.info("Fin de partie");
 									} else {
-										if (str.equalsIgnoreCase(label2.getText())) {
+										if (variableIntermediaire.equalsIgnoreCase(label2.getText())) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, votre combianaison sécrète a été trouvée");
 
@@ -220,12 +225,12 @@ public class FenetreDeJeu {
 										} else {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI:  " + message + "\n");
-											str = jeu.joue(message, str);
-											chatTextArea.append("Ordinateur: " + str + "\n");
+											variableIntermediaire = jeu.joue(message, variableIntermediaire);
+											chatTextArea.append("Ordinateur: " + variableIntermediaire + "\n");
 											jeu.nombreEssaiEffectuer++;
 
-											logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
-													+ label2.getText());
+											logger.info("Valeur donnée : " + variableIntermediaire
+													+ "   Valeur à trouver : " + label2.getText());
 											logger.info("essais " + jeu.nombreEssaiEffectuer);
 										}
 
@@ -245,8 +250,9 @@ public class FenetreDeJeu {
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											JOptionPane.showMessageDialog(null,
-													"La solution etait : \n  - OridiCombianaison : " + str
-															+ "\n - PlayerCombinaison :" + label2.getText());
+													"La solution etait : \n  - CombinaisonDeLOrdi : "
+															+ variableIntermediaire + "\n - CombinaisonDuJoueur :"
+															+ label2.getText());
 
 											logger.info("Fin de partie");
 										}
@@ -256,20 +262,22 @@ public class FenetreDeJeu {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI:  " + message + "   ------------->  ");
 
-											String indiceO = jeu.donnerIndice(str, message);
-											String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
+											String indiceO = jeu.donnerIndice(variableIntermediaire, message);
+											String fIindiceP = jeu.donnerIndice(label2.getText(),
+													variableIntermediare2);
 
-											String EndindiceP = jeu.donnerIndice(label2.getText(), str2);
+											String EndindiceP = jeu.donnerIndice(label2.getText(),
+													variableIntermediare2);
 
 											newMessageTextField.setText("");
 
-											if (message.equalsIgnoreCase(str)) {
+											if (message.equalsIgnoreCase(variableIntermediaire)) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, vous avez trouvé la combianaison sécrète");
 
 												logger.info("Fin de partie");
 											}
-											if (str2.equalsIgnoreCase(label2.getText())) {
+											if (variableIntermediare2.equalsIgnoreCase(label2.getText())) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, votre combianaison sécrète a été trouvée");
 
@@ -277,13 +285,15 @@ public class FenetreDeJeu {
 											}
 											chatTextArea.append("Ordinateur: " + indiceO + "\n");
 
-											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-											chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
+											logger.info("Valeur entrée : " + message + "   Valeur à trouver : "
+													+ variableIntermediaire);
+											chatTextArea.append(
+													"Ordinateur: " + variableIntermediare2 + "   ------------->  ");
 											chatTextArea.append("Moi: " + EndindiceP + "\n");
 
-											logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
-													+ label2.getText());
-											str2 = jeu.joue(fIindiceP, str2);
+											logger.info("Valeur donnée : " + variableIntermediare2
+													+ "   Valeur à trouver : " + label2.getText());
+											variableIntermediare2 = jeu.joue(fIindiceP, variableIntermediare2);
 											jeu.nombreEssaiEffectuer++;
 
 											logger.info("essais " + jeu.nombreEssaiEffectuer);
@@ -345,8 +355,9 @@ public class FenetreDeJeu {
 
 									break;
 								case "MasterMind : défenseur":
-									conf.genererCombinaison();
-									str = conf.getCombinaison();
+									conf.setCombinaison(Integer.toString(
+											conf.getValeurUtilisable(Integer.parseInt(conf.genererCombinaison()))));
+									variableIntermediaire = conf.getCombinaison();
 
 									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
 										JOptionPane.showMessageDialog(null,
@@ -356,7 +367,7 @@ public class FenetreDeJeu {
 
 										logger.info("Fin de partie");
 									} else {
-										if (str.equalsIgnoreCase(label2.getText())) {
+										if (variableIntermediaire.equalsIgnoreCase(label2.getText())) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, votre combinaison a été trouvée.");
 
@@ -365,11 +376,11 @@ public class FenetreDeJeu {
 										} else {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI: " + message + "\n");
-											chatTextArea.append("Ordinateur: " + str + "\n");
+											chatTextArea.append("Ordinateur: " + variableIntermediaire + "\n");
 											jeu.nombreEssaiEffectuer++;
 
-											logger.info("Valeur donnée : " + str + "   Valeur à trouver : "
-													+ label2.getText());
+											logger.info("Valeur donnée : " + variableIntermediaire
+													+ "   Valeur à trouver : " + label2.getText());
 											logger.info("essais " + jeu.nombreEssaiEffectuer);
 										}
 
@@ -378,7 +389,7 @@ public class FenetreDeJeu {
 									break;
 
 								case "MasterMind : duel":
-									
+
 									if (message.length() < conf.getNombreDeChiffre()) {
 										chatTextArea.append("Un chiffre d'une longueur de " + message.length()
 												+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
@@ -390,8 +401,9 @@ public class FenetreDeJeu {
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
 											JOptionPane.showMessageDialog(null,
-													"La solution etait : \n  - OridiCombianaison : " + str
-															+ "\n - PlayerCombinaison :" + label2.getText());
+													"La solution etait : \n  - CombinaisonDeLOrdi : "
+															+ variableIntermediaire + "\n - CombinaisonDuJoueur :"
+															+ label2.getText());
 
 											logger.info("Fin de partie");
 										}
@@ -401,21 +413,23 @@ public class FenetreDeJeu {
 											newMessageTextField.setText("");
 											chatTextArea.append("MOI:  " + message + "   ------------->  ");
 
-											String indiceO = jeu.donnerIndice(str, message);
+											String indiceO = jeu.donnerIndice(variableIntermediaire, message);
 											@SuppressWarnings("unused")
-											String fIindiceP = jeu.donnerIndice(label2.getText(), str2);
+											String fIindiceP = jeu.donnerIndice(label2.getText(),
+													variableIntermediare2);
 
-											String EndindiceP = jeu.donnerIndice(label2.getText(), str2);
+											String EndindiceP = jeu.donnerIndice(label2.getText(),
+													variableIntermediare2);
 
 											newMessageTextField.setText("");
 
-											if (message.equalsIgnoreCase(str)) {
+											if (message.equalsIgnoreCase(variableIntermediaire)) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, vous avez trouvé la combianaison sécrète");
 
 												logger.info("Fin de partie");
 											}
-											if (str2.equalsIgnoreCase(label2.getText())) {
+											if (variableIntermediare2.equalsIgnoreCase(label2.getText())) {
 												JOptionPane.showMessageDialog(null,
 														"Fin de partie, votre combianaison sécrète a été trouvée");
 
@@ -423,14 +437,19 @@ public class FenetreDeJeu {
 											}
 											chatTextArea.append("Ordinateur: " + indiceO + "\n");
 
-											logger.info("Valeur entrée : " + message + "   Valeur à trouver : " + str);
-											chatTextArea.append("Ordinateur: " + str2 + "   ------------->  ");
+											logger.info("Valeur entrée : " + message + "   Valeur à trouver : "
+													+ variableIntermediaire);
+											chatTextArea.append(
+													"Ordinateur: " + variableIntermediare2 + "   ------------->  ");
 											chatTextArea.append("Moi: " + EndindiceP + "\n");
 
-											logger.info("Valeur donnée : " + str2 + "   Valeur à trouver : "
-													+ label2.getText());
-											conf.genererCombinaison();
-											str2 = conf.getCombinaison();
+											logger.info("Valeur donnée : " + variableIntermediare2
+													+ "   Valeur à trouver : " + label2.getText());
+											variableIntermediare2 = Integer.toString(
+													conf.getValeurUtilisable(Integer.parseInt(conf.getCombinaison())));
+											conf.setCombinaison(Integer.toString(conf
+													.getValeurUtilisable(Integer.parseInt(conf.genererCombinaison()))));
+											variableIntermediaire = conf.getCombinaison();
 											jeu.nombreEssaiEffectuer++;
 
 											logger.info("essais " + jeu.nombreEssaiEffectuer);
@@ -457,8 +476,8 @@ public class FenetreDeJeu {
 								}
 
 							} else {
-								if (str.length() > conf.getNombreDeChiffre()
-										|| str.length() < conf.getNombreDeChiffre()) {
+								if (message.length() > conf.getNombreDeChiffre()
+										|| message.length() < conf.getNombreDeChiffre()) {
 									System.out.println("Un chiffre d'une longueur de " + message.length()
 											+ " a été saisi. \nVeuillez en saisir un d'une longueur de "
 											+ conf.getNombreDeChiffre() + "\n");
@@ -469,8 +488,8 @@ public class FenetreDeJeu {
 								}
 							}
 						}
-
 					}
+
 				});
 
 				rejouer.addActionListener(new ActionListener() {
@@ -479,11 +498,14 @@ public class FenetreDeJeu {
 						chatTextArea.setText(" ");
 						jeu.nombreEssaiEffectuer = 0;
 						conf.genererCombinaison();
-						str = conf.getCombinaison();
+						variableIntermediaire = conf.getCombinaison();
 
-						if (getMode().equalsIgnoreCase("Recherche +/- : challenger")
-								|| getMode().equalsIgnoreCase("MasterMind  : challenger")) {
+						if (getMode().equalsIgnoreCase("Recherche +/- : challenger")) {
 							label3.setText("CombinaisonOrdi :" + conf.getCombinaison() + " ");
+						}
+						if (getMode().equalsIgnoreCase("MasterMind  : challenger")) {
+							label3.setText("CombinaisonOrdi :"
+									+ conf.getValeurUtilisable(Integer.parseInt(conf.getCombinaison())) + " ");
 						}
 
 						if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
@@ -491,14 +513,18 @@ public class FenetreDeJeu {
 							conf.setCombinaison(conf.genererCombinaison());
 							chatTextArea.setText("Ordinateur: " + conf.getCombinaison() + "\n");
 							jeu.nombreEssaiEffectuer++;
-							logger.info("Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
+							logger.info("Valeur donnée : " + variableIntermediaire + "   Valeur à trouver : "
+									+ label2.getText());
 							logger.info("essais " + jeu.nombreEssaiEffectuer);
 						}
 
-						if (getMode().equalsIgnoreCase("Recherche +/- : duel")
-								|| getMode().equalsIgnoreCase("MasterMind : duel")) {
+						if (getMode().equalsIgnoreCase("Recherche +/- : duel")) {
 							conf.setCombinaison(conf.genererCombinaison());
 							label3.setText("CombinaisonOrdi :" + conf.getCombinaison() + " ");
+						}
+						if (getMode().equalsIgnoreCase("MasterMind : duel")) {
+							label3.setText("CombinaisonOrdi :"
+									+ conf.getValeurUtilisable(Integer.parseInt(conf.getCombinaison())) + " ");
 						}
 
 					}
@@ -513,9 +539,10 @@ public class FenetreDeJeu {
 
 				if (getMode().equalsIgnoreCase("Recherche +/- : défenseur")
 						|| getMode().equalsIgnoreCase("MasterMind : défenseur")) {
-					chatTextArea.setText("Ordinateur: " + str + "\n");
+					chatTextArea.setText("Ordinateur: " + variableIntermediaire + "\n");
 					jeu.nombreEssaiEffectuer++;
-					logger.info("Valeur donnée : " + str + "   Valeur à trouver : " + label2.getText());
+					logger.info(
+							"Valeur donnée : " + variableIntermediaire + "   Valeur à trouver : " + label2.getText());
 					logger.info("essais " + jeu.nombreEssaiEffectuer);
 				}
 
@@ -551,7 +578,7 @@ public class FenetreDeJeu {
 	}
 
 	public void modeDeveloppeur() {
-		label3.setText("CombinaisonO : " + conf.getCombinaison());
+		label3.setText("CombinaisonOrdi : " + conf.getCombinaison());
 	}
 
 	/**

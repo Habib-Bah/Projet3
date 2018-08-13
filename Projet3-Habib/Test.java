@@ -10,7 +10,6 @@ public class Test {
 
 		Launcher l = new Launcher();
 		l.run();
-
 	}
 
 }

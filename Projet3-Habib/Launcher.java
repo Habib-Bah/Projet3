@@ -22,6 +22,11 @@ public class Launcher {
 				.showInputDialog("Tapez 1 pour le jouer à Recherche +/-; \n Tapez 2 pour jouer à MasterMind \n ");
 		logger.info("Choix du jeu");
 
+		while (!mode.equalsIgnoreCase("1") && !mode.equalsIgnoreCase("2")) {
+			mode = JOptionPane.showInputDialog(
+					"Erreur de selection \n Tapez 1 pour le jouer à Recherche +/-; \n Tapez 2 pour jouer à MasterMind \n ");
+		}
+
 		FenetreDeJeu fenetre;
 		switch (mode) {
 		case "1":
@@ -30,6 +35,10 @@ public class Launcher {
 					"Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
 			logger.info("Vous avez choisi le Recherche +/-");
 			logger.info("Choix du mode de jeu");
+			while (!message.equalsIgnoreCase("1") && !message.equalsIgnoreCase("2") && !message.equalsIgnoreCase("3")) {
+				message = JOptionPane.showInputDialog(
+						"Erreur de selection \n Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
+			}
 			if (message.equals("1")) {
 				logger.info("Vous avez choisi le mode challenger");
 				fenetre = new FenetreDeJeu("Recherche +/- : challenger", new OutputStreamWriter(System.out));
@@ -55,6 +64,11 @@ public class Launcher {
 			String mes = JOptionPane.showInputDialog(
 					"Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
 			logger.info("Vous avez choisi le MasterMind");
+
+			while (!mes.equalsIgnoreCase("1") && !mes.equalsIgnoreCase("2") && !mes.equalsIgnoreCase("3")) {
+				mes = JOptionPane.showInputDialog(
+						"Erreur de selection \n Tapez 1 pour le mode challenger; \n Tapez 2 pour le mode défenseur \n Tapez 3 pour le mode duel ");
+			}
 			logger.info("Choix du mode de jeu");
 			if (mes.equals("1")) {
 				logger.info("Vous avez choisi le mode challenger");
