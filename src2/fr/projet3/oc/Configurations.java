@@ -4,6 +4,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+import org.apache.log4j.Logger;
+
 public class Configurations {
 
 	private String combinaison;
@@ -13,9 +15,11 @@ public class Configurations {
 	private String modeDeveloppeur;
 	private int borne;
 	private int valeur;
+	Logger logger = Logger.getLogger(Launcher.class);
 
 	public Configurations() throws IOException {
 		MiseAJourDesValeurs();
+		logger.info("Mise à jour des valeurs du fichiers de configuration");
 	}
 
 	/**

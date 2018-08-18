@@ -1,27 +1,11 @@
 package fr.projet3.oc;
 
+import org.apache.log4j.Logger;
+
 public class RecherchePM extends Jeu {
+	
+	Logger logger = Logger.getLogger(Launcher.class);
 
-	String title;
-	private String Mode;
-
-	/**
-	 * getter recupérant le mode du jeu au quel on joue
-	 * 
-	 * @return String mode
-	 */
-	public String getMode() {
-		return Mode;
-	}
-
-	/**
-	 * setter modifiant le mode du jeu
-	 * 
-	 * @param le mode de jeu
-	 */
-	public void setMode(String mode) {
-		Mode = mode;
-	}
 
 	/**
 	 * methode joue qui permet à un l'ordinateur je jouer un coup et qui genère une
@@ -81,6 +65,7 @@ public class RecherchePM extends Jeu {
 			
 		}
 		
+		logger.info("génération d'une nouvelle proposition");
 		return resultat;
 
 	}
@@ -117,6 +102,7 @@ public class RecherchePM extends Jeu {
 			}
 
 		}
+		logger.info("génération d'un nouvel indice");
 		return result;
 	}
 

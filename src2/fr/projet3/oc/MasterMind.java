@@ -2,8 +2,13 @@ package fr.projet3.oc;
 
 import java.util.*;
 
-public class MasterMind extends Jeu {
+import org.apache.log4j.Logger;
 
+public class MasterMind extends Jeu {
+	
+
+	Logger logger = Logger.getLogger(Launcher.class);
+	
 	Configurations conf;
 
 	/**
@@ -34,6 +39,7 @@ public class MasterMind extends Jeu {
 					break;
 				}
 			}
+			logger.info("génération d'une nouvelle proposition");
 		return valeur;
 	}
 
@@ -78,6 +84,7 @@ public class MasterMind extends Jeu {
 				if (tabl1[cm].equalsIgnoreCase(tabl2[cmp])) {
 					if (cm == cmp) {
 						nbrebienplace++;
+						logger.info("compatage du nombre de valeurs bien placées");
 					}
 
 				}
@@ -105,6 +112,9 @@ public class MasterMind extends Jeu {
 				}
 			}
 		}
+		
+		logger.info("Comptage du nombre de valeurs existants");
+		logger.info("génération d'un nouvel indice");
 		
 		return nombrePresent + " présent," +nbrebienplace +" bien placé";
 	}
