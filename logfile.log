@@ -1,0 +1,209 @@
+2018-08-23 14:30:50  INFO  - Lancement de l'application
+2018-08-23 14:30:55  INFO  - Choix du jeu
+2018-08-23 14:30:56  INFO  - Vous avez choisi le Recherche +/-
+2018-08-23 14:30:56  INFO  - Choix du mode de jeu
+2018-08-23 14:30:56  INFO  - Vous avez choisi le mode challenger
+2018-08-23 14:30:56  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:36:32  INFO  - Lancement de l'application
+2018-08-23 14:36:34  INFO  - Choix du jeu
+2018-08-23 14:36:54  INFO  - Lancement de l'application
+2018-08-23 14:36:56  INFO  - Choix du jeu
+2018-08-23 14:37:19  INFO  - Lancement de l'application
+2018-08-23 14:37:21  INFO  - Choix du jeu
+2018-08-23 14:37:36  INFO  - Lancement de l'application
+2018-08-23 14:37:38  INFO  - Choix du jeu
+2018-08-23 14:38:02  INFO  - Lancement de l'application
+2018-08-23 14:38:03  INFO  - Choix du jeu
+2018-08-23 14:38:41  INFO  - Lancement de l'application
+2018-08-23 14:38:42  INFO  - Choix du jeu
+2018-08-23 14:38:58  INFO  - Lancement de l'application
+2018-08-23 14:39:08  INFO  - Choix du jeu
+2018-08-23 14:39:51  INFO  - Lancement de l'application
+2018-08-23 14:39:53  INFO  - Choix du jeu
+2018-08-23 14:39:54  INFO  - Vous avez choisi le Recherche +/-
+2018-08-23 14:39:54  INFO  - Choix du mode de jeu
+2018-08-23 14:39:54  INFO  - Vous avez choisi le mode challenger
+2018-08-23 14:39:54  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:40:59  INFO  - génération d'un nouvel indice
+2018-08-23 14:40:59  INFO  - Valeur entrée : 1234   Valeur à trouver : 9275
+2018-08-23 14:40:59  INFO  - essais 1
+2018-08-23 14:41:09  INFO  - génération d'un nouvel indice
+2018-08-23 14:41:09  INFO  - Valeur entrée : 0456   Valeur à trouver : 7990
+2018-08-23 14:41:09  INFO  - essais 2
+2018-08-23 14:41:21  INFO  - génération d'un nouvel indice
+2018-08-23 14:41:21  INFO  - Valeur entrée : 0767   Valeur à trouver : 7181
+2018-08-23 14:41:21  INFO  - essais 3
+2018-08-23 14:41:29  INFO  - génération d'un nouvel indice
+2018-08-23 14:41:31  INFO  - Fin de partie
+2018-08-23 14:42:01  INFO  - Lancement de l'application
+2018-08-23 14:42:04  INFO  - Choix du jeu
+2018-08-23 14:42:05  INFO  - Vous avez choisi le Recherche +/-
+2018-08-23 14:42:05  INFO  - Choix du mode de jeu
+2018-08-23 14:42:05  INFO  - Vous avez choisi le mode défenseur
+2018-08-23 14:42:05  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:42:05  INFO  - Valeur donnée : 9773   Valeur à trouver :   :????
+2018-08-23 14:42:05  INFO  - essais 1
+2018-08-23 14:42:17  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:42:17  INFO  - Valeur donnée : 8664   Valeur à trouver : 1234
+2018-08-23 14:42:17  INFO  - essais 2
+2018-08-23 14:42:24  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:42:24  INFO  - Valeur donnée : 7554   Valeur à trouver : 1234
+2018-08-23 14:42:24  INFO  - essais 3
+2018-08-23 14:42:28  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:42:28  INFO  - Valeur donnée : 6444   Valeur à trouver : 1234
+2018-08-23 14:42:28  INFO  - essais 4
+2018-08-23 14:42:31  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:42:31  INFO  - Valeur donnée : 5334   Valeur à trouver : 1234
+2018-08-23 14:42:31  INFO  - essais 5
+2018-08-23 14:42:43  INFO  - Fin de partie
+2018-08-23 14:42:54  INFO  - Lancement de l'application
+2018-08-23 14:42:56  INFO  - Choix du jeu
+2018-08-23 14:42:57  INFO  - Vous avez choisi le Recherche +/-
+2018-08-23 14:42:57  INFO  - Choix du mode de jeu
+2018-08-23 14:42:57  INFO  - Vous avez choisi le mode duel
+2018-08-23 14:42:57  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:43:14  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:14  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:14  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:14  INFO  - Valeur entrée : 1234   Valeur à trouver : 4742
+2018-08-23 14:43:14  INFO  - Valeur donnée : 4742   Valeur à trouver : 1234
+2018-08-23 14:43:14  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:43:14  INFO  - essais 1
+2018-08-23 14:43:39  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:39  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:39  INFO  - génération d'un nouvel indice
+2018-08-23 14:43:39  INFO  - Valeur entrée : 4782   Valeur à trouver : 4742
+2018-08-23 14:43:39  INFO  - Valeur donnée : 3633   Valeur à trouver : 1234
+2018-08-23 14:43:39  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:43:39  INFO  - essais 2
+2018-08-23 14:44:24  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:24  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:24  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:24  INFO  - Valeur entrée : 4752   Valeur à trouver : 4742
+2018-08-23 14:44:24  INFO  - Valeur donnée : 2534   Valeur à trouver : 1234
+2018-08-23 14:44:24  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:44:24  INFO  - essais 3
+2018-08-23 14:44:38  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:38  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:38  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:38  INFO  - Valeur entrée : 4732   Valeur à trouver : 4742
+2018-08-23 14:44:38  INFO  - Valeur donnée : 1434   Valeur à trouver : 1234
+2018-08-23 14:44:38  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:44:38  INFO  - essais 4
+2018-08-23 14:44:44  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:44  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:44  INFO  - génération d'un nouvel indice
+2018-08-23 14:44:44  INFO  - Valeur entrée : 1111   Valeur à trouver : 4742
+2018-08-23 14:44:44  INFO  - Valeur donnée : 1334   Valeur à trouver : 1234
+2018-08-23 14:44:44  INFO  - génération d'une nouvelle proposition
+2018-08-23 14:44:44  INFO  - essais 5
+2018-08-23 14:44:53  INFO  - Fin de partie
+2018-08-23 14:45:10  INFO  - Lancement de l'application
+2018-08-23 14:45:12  INFO  - Choix du jeu
+2018-08-23 14:45:13  INFO  - Vous avez choisi le MasterMind
+2018-08-23 14:45:13  INFO  - Choix du mode de jeu
+2018-08-23 14:45:13  INFO  - Vous avez choisi le mode challenger
+2018-08-23 14:45:13  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:45:17  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:45:17  INFO  - génération d'un nouvel indice
+2018-08-23 14:45:17  INFO  - Valeur entrée : 1234   Valeur à trouver : 3078
+2018-08-23 14:45:17  INFO  - essais 1
+2018-08-23 14:45:31  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:45:31  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:45:31  INFO  - génération d'un nouvel indice
+2018-08-23 14:45:31  INFO  - Valeur entrée : 3219   Valeur à trouver : 3078
+2018-08-23 14:45:31  INFO  - essais 2
+2018-08-23 14:45:40  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:45:40  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:45:40  INFO  - génération d'un nouvel indice
+2018-08-23 14:45:40  INFO  - Valeur entrée : 3210   Valeur à trouver : 3078
+2018-08-23 14:45:40  INFO  - essais 3
+2018-08-23 14:45:46  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:45:46  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:45:46  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:45:46  INFO  - génération d'un nouvel indice
+2018-08-23 14:45:46  INFO  - Valeur entrée : 3022   Valeur à trouver : 3078
+2018-08-23 14:45:46  INFO  - essais 4
+2018-08-23 14:45:48  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:45:48  INFO  - génération d'un nouvel indice
+2018-08-23 14:45:48  INFO  - Valeur entrée : 2222   Valeur à trouver : 3078
+2018-08-23 14:45:48  INFO  - essais 5
+2018-08-23 14:45:53  INFO  - Fin de partie
+2018-08-23 14:46:01  INFO  - Lancement de l'application
+2018-08-23 14:46:03  INFO  - Choix du jeu
+2018-08-23 14:46:04  INFO  - Vous avez choisi le MasterMind
+2018-08-23 14:46:04  INFO  - Choix du mode de jeu
+2018-08-23 14:46:04  INFO  - Vous avez choisi le mode défenseur
+2018-08-23 14:46:04  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:46:04  INFO  - Valeur donnée : 9742   Valeur à trouver :   :????
+2018-08-23 14:46:04  INFO  - essais 1
+2018-08-23 14:46:15  INFO  - Valeur donnée : 8024   Valeur à trouver : 1234
+2018-08-23 14:46:15  INFO  - essais 2
+2018-08-23 14:46:20  INFO  - Valeur donnée : 6833   Valeur à trouver : 1234
+2018-08-23 14:46:20  INFO  - essais 3
+2018-08-23 14:46:26  INFO  - Valeur donnée : 2725   Valeur à trouver : 1234
+2018-08-23 14:46:26  INFO  - essais 4
+2018-08-23 14:46:32  INFO  - Valeur donnée : 884   Valeur à trouver : 1234
+2018-08-23 14:46:32  INFO  - essais 5
+2018-08-23 14:46:45  INFO  - Fin de partie
+2018-08-23 14:46:56  INFO  - Lancement de l'application
+2018-08-23 14:46:57  INFO  - Choix du jeu
+2018-08-23 14:46:59  INFO  - Vous avez choisi le MasterMind
+2018-08-23 14:46:59  INFO  - Choix du mode de jeu
+2018-08-23 14:46:59  INFO  - Vous avez choisi le mode duel
+2018-08-23 14:46:59  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-23 14:47:05  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:05  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:05  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:05  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:05  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:05  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:05  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:05  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:05  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:05  INFO  - Valeur entrée : 1234   Valeur à trouver : 1089
+2018-08-23 14:47:05  INFO  - Valeur donnée : 1089   Valeur à trouver : 1234
+2018-08-23 14:47:05  INFO  - essais 1
+2018-08-23 14:47:19  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:19  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:19  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:19  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:19  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:19  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:19  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:19  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:19  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:19  INFO  - Valeur entrée : 2233   Valeur à trouver : 3537
+2018-08-23 14:47:19  INFO  - Valeur donnée : 1088   Valeur à trouver : 1234
+2018-08-23 14:47:19  INFO  - essais 2
+2018-08-23 14:47:21  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:21  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:21  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:21  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:21  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:21  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:21  INFO  - compatage du nombre de valeurs bien placées
+2018-08-23 14:47:21  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:21  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:21  INFO  - Valeur entrée : 2222   Valeur à trouver : 3082
+2018-08-23 14:47:21  INFO  - Valeur donnée : 3537   Valeur à trouver : 1234
+2018-08-23 14:47:21  INFO  - essais 3
+2018-08-23 14:47:22  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:22  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:22  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:22  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:22  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:22  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:22  INFO  - Valeur entrée : 3333   Valeur à trouver : 5028
+2018-08-23 14:47:22  INFO  - Valeur donnée : 3082   Valeur à trouver : 1234
+2018-08-23 14:47:22  INFO  - essais 4
+2018-08-23 14:47:23  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:23  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:23  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:23  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:23  INFO  - Comptage du nombre de valeurs existants
+2018-08-23 14:47:23  INFO  - génération d'un nouvel indice
+2018-08-23 14:47:23  INFO  - Valeur entrée : 3333   Valeur à trouver : 1866
+2018-08-23 14:47:23  INFO  - Valeur donnée : 5028   Valeur à trouver : 1234
+2018-08-23 14:47:23  INFO  - essais 5
+2018-08-23 14:47:31  INFO  - Fin de partie

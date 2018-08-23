@@ -19,7 +19,7 @@ public class Launcher {
 		logger.info("Lancement de l'application");
 
 		String mode = JOptionPane
-				.showInputDialog("Tapez 1 pour le jouer à Recherche +/-; \n Tapez 2 pour jouer à MasterMind \n ");
+				.showInputDialog("Tapez 1 pour le jouer à Recherche +/- \n Tapez 2 pour jouer à MasterMind \n ");
 		logger.info("Choix du jeu");
 
 		while (!mode.equalsIgnoreCase("1") && !mode.equalsIgnoreCase("2")) {

@@ -10,7 +10,7 @@ public class Configurations {
 
 	private String combinaison;
 	private int nombreDeChiffre;
-	private int nombreEssaieAutorisé;
+	private int nombreEssaieAutorise;
 	private int nombreDeChiffreUtilisables;
 	private String modeDeveloppeur;
 	private int borne;
@@ -71,7 +71,7 @@ public class Configurations {
 	 */
 
 	public int getNombreEssaieAutorisé() {
-		return nombreEssaieAutorisé;
+		return nombreEssaieAutorise;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class Configurations {
 	 * 
 	 */
 
-	public void setNombreEssaieAutorisé(int nombreEssaieAutorisé) {
-		this.nombreEssaieAutorisé = nombreEssaieAutorisé;
+	public void setNombreEssaieAutorisé(int nombreEssaieAutorise) {
+		this.nombreEssaieAutorise = nombreEssaieAutorise;
 	}
 
 	/**
