@@ -174,7 +174,7 @@ public class FenetreDeJeu {
 												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 											JOptionPane.showMessageDialog(null,
@@ -209,7 +209,7 @@ public class FenetreDeJeu {
 									break;
 								case "Recherche +/- : défenseur":
 
-									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -245,7 +245,7 @@ public class FenetreDeJeu {
 												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -321,7 +321,7 @@ public class FenetreDeJeu {
 												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -359,7 +359,7 @@ public class FenetreDeJeu {
 											conf.getValeurUtilisable(Integer.parseInt(conf.genererCombinaison()))));
 									variableIntermediaire = conf.getCombinaison();
 
-									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+									if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 										JOptionPane.showMessageDialog(null,
 												"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 
@@ -396,7 +396,7 @@ public class FenetreDeJeu {
 												+ conf.getNombreDeChiffre() + "\n");
 										newMessageTextField.setText("");
 									} else {
-										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorisé()) {
+										if (jeu.nombreEssaiEffectuer >= conf.getNombreEssaieAutorise()) {
 											JOptionPane.showMessageDialog(null,
 													"Fin de partie, vous avez atteint le nombre d'essaie autorisé");
 

@@ -70,7 +70,7 @@ public class Configurations {
 	 * @return int valeurMax
 	 */
 
-	public int getNombreEssaieAutorisé() {
+	public int getNombreEssaieAutorise() {
 		return nombreEssaieAutorise;
 	}
 
@@ -82,7 +82,7 @@ public class Configurations {
 	 * 
 	 */
 
-	public void setNombreEssaieAutorisé(int nombreEssaieAutorise) {
+	public void setNombreEssaieAutorise(int nombreEssaieAutorise) {
 		this.nombreEssaieAutorise = nombreEssaieAutorise;
 	}
 
@@ -247,7 +247,7 @@ public class Configurations {
 			}
 
 			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDessaisAutorise ")) {
-				setNombreEssaieAutorisé(Integer.parseInt(tableauDetableau[ln][1]));
+				setNombreEssaieAutorise(Integer.parseInt(tableauDetableau[ln][1]));
 			}
 
 			if ((tableauDetableau[ln][0]).equalsIgnoreCase("jeu.nombreDeChiffreUtilisables ")) {
