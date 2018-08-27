@@ -73,3 +73,18 @@
 2018-08-23 19:13:05  INFO  - essais 1
 2018-08-23 19:13:26  INFO  - Lancement de l'application
 2018-08-23 19:13:41  INFO  - Choix du jeu
+2018-08-27 21:31:28  INFO  - Lancement de l'application
+2018-08-27 21:31:30  INFO  - Choix du jeu
+2018-08-27 21:31:32  INFO  - Vous avez choisi le Recherche +/-
+2018-08-27 21:31:32  INFO  - Choix du mode de jeu
+2018-08-27 21:31:32  INFO  - Vous avez choisi le mode challenger
+2018-08-27 21:31:32  INFO  - Mise à jour des valeurs du fichiers de configuration
+2018-08-27 21:31:36  INFO  - génération d'un nouvel indice
+2018-08-27 21:31:36  INFO  - Valeur entrée : 1234   Valeur à trouver : 4904
+2018-08-27 21:31:36  INFO  - essais 1
+2018-08-27 21:31:40  INFO  - génération d'un nouvel indice
+2018-08-27 21:31:40  INFO  - Valeur entrée : 2345   Valeur à trouver : 4036
+2018-08-27 21:31:40  INFO  - essais 2
+2018-08-27 21:31:43  INFO  - génération d'un nouvel indice
+2018-08-27 21:31:43  INFO  - Valeur entrée : 1983   Valeur à trouver : 5269
+2018-08-27 21:31:43  INFO  - essais 3
