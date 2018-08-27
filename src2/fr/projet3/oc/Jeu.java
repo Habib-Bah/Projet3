@@ -4,7 +4,7 @@ public abstract class Jeu {
 
 	public abstract String joue(String s1, String s2);
 
-	public abstract String donnerIndice(String s1, String s2);
+	public abstract String donnerIndice(String proposition, String combianison);
 
 	public abstract boolean finDePartie(String s);
 

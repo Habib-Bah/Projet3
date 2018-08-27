@@ -341,7 +341,6 @@ public class FenetreDeJeu {
 
 												logger.info("Fin de partie");
 											} else {
-												System.out.println(" " + str);
 												chatTextArea.append("Ordinateur: " + m + "\n");
 												jeu.nombreEssaiEffectuer++;
 
